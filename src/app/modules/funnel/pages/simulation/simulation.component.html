@@ -1,0 +1,131 @@
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper mb-small-odd">
+      <h1 class="heading-1 mb-small">
+        ¡Felicitaciones!
+      </h1>
+
+      <p class="big-p mb-small-odd">
+
+        <b>{{data?.Nombre || 'Nombre'}}</b>&nbsp; tiene preaprobado un monto <br>
+        <b style="font-size: 1.5rem;">$ {{availableAmount | number:'':'es' }}</b>
+      </p>
+      <p *ngIf="clientePref == true">
+        Identificaste un cliente preferencial que podrá tener una menor <b>tasa de interés </b>, lo que facilitará tu
+        venta.
+      </p>
+      <div class="is-center" *ngIf="availableAmount>=5000000 && clientePref == true">
+        <table>
+          <tr style="background: #164C4F;color: white !important;">
+            <th> Desembolso</th>
+            <th>Tasa M.V</th>
+          </tr>
+          <tr>
+            <td>$5M - $10M </td>
+            <td>1,7 %</td>
+          </tr>
+          <tr *ngIf="availableAmount>9999999">
+            <td> + 10M</td>
+            <td>1,5 %</td>
+          </tr>
+        </table>
+      </div>
+      <br><br>
+      <p class="default-p">
+        Selecciona el monto y el plazo del crédito.
+      </p>
+      <div class="wrapper  has-margin-top-10">
+        <div class="mb-tiny">
+          <div class="topes">
+            <span>
+              ${{sliderMin | number:'1.0-0':'es'}}
+            </span>
+            <span>
+              ${{sliderMax | number:'1.0-0':'es'}}
+            </span>
+          </div>
+          <mat-slider class="slider" #gridsize (change)="updateSetting($event)"
+            (pointerup)="triggerCalc(gridsize.value)" [min]="sliderMin" [max]="sliderMax" step="100000"
+            [(ngModel)]="gridsize.value"></mat-slider>
+
+          <mat-form-field class="input-slider">
+            <label matPrefix class="prefix-label"><b>Valor: </b></label>
+            <input matInput minlenght="7" id="input-amount" [(ngModel)]="gridsize.value" [ngModelOptions]="{standalone: true}"
+              (keydown)="onInputChange($event)" mask="separator.2" class="border-input" thousandSeparator="."
+              maxlength="13" autocomplete="off">
+            <label matPrefix class="subfix-label"> $ </label>
+          </mat-form-field>
+          <div *ngIf="clientePref == true">
+            <br>
+            <span *ngIf="availableAmount>=5000000 && availableAmount<10000000">
+              <div *ngIf="gridsize.value < 5000000">
+                Recuérdale al cliente que si pide un desembolso mayor a <b>$5.000.000</b>  tendrá una <b> tasa de interés preferencial</b> .
+              </div>
+            </span>
+            <br>
+            <span *ngIf="availableAmount>=10000000">
+              <div *ngIf="gridsize.value < 10000000">
+                Recuérdale al cliente que si pide un desembolso mayor a <b>$10.000.000</b>  tendrá una <b> tasa de interés preferencial</b> .
+
+              </div>
+            </span>
+          </div>
+          <div class="topes">
+            <span>
+              {{plazoMin}} Meses
+            </span>
+            <span>
+              {{plazoMax }} Meses
+            </span>
+          </div>
+
+          <form [formGroup]="amountForm">
+            <mat-slider #mySlider2 [min]="plazoMin" [max]="plazoMax" formControlName="Meses" step="6"
+              [value]="sliderMin" (change)="sliderOnChangeMont(mySlider2.value)"
+              (pointerup)="sliderOnChangeMont(mySlider2.value)" class="slider">
+            </mat-slider>
+            <mat-form-field class="input-slider">
+              <label matPrefix class="prefix-label"><b>Plazo:</b></label>
+              <label matPrefix class="subfix-label-end">Meses</label>
+              <input matInput minlenght="7" [ngModel]="amountForm.value.Meses" (keypress)="onInputChangeMonth($event)"
+                readonly="true" [ngModelOptions]="{standalone: true}" mask="separator.2" class="border-input"
+                thousandSeparator="." maxlength="13" autocomplete="off">
+            </mat-form-field>
+          </form>
+
+          <br>
+          <div class="is-full grid-center">
+            <div class="quote">
+              <div class="is-flex"><b>Cuota mensual:</b>
+                <mat-icon *ngIf="getQuote()>0" class="font-icon-info" (click)="openPopUpDetail()">info</mat-icon>
+              </div>
+              <p>$ {{getQuote() | number:'1.0-0':'es'}} </p>
+              <div *ngIf="clientePref == true && getSave()>0" class="is-flex"><b>Ahorro:</b></div>
+              <p *ngIf="clientePref == true && getSave()>0">$ {{getSave() | number:'1.0-0':'es'}} </p>
+            </div>
+          </div>
+          <br>
+
+          <br>
+          <p [innerHTML]="mensajeInteres">
+
+          </p>
+          <br>
+          <div class="actions">
+            <button class="btn-orange mb-tiny-odd is-full-width" (click)="goDates()"
+            [disabled]="getQuote()==0">Continuar</button>
+          <br>
+          <button class="btn-outline is-full-width" routerLink="/funnel/initial-query">Cancelar</button>
+          <br>
+          <app-btn-chat></app-btn-chat>
+          </div>
+     
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

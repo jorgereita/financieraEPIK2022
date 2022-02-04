@@ -1,0 +1,18 @@
+<div class="validate-email">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Confirmación de correo"
+  ></app-topbar>
+
+  <div class="has-padding-20 text-center is-relative">
+    <img src="assets/images/funnel/success.gif" width="100%" alt="success validation">
+
+    <p>
+      <strong>Felicitaciones <strong class="text-green text-capitalize">{{userData?.PrimerNombre}} {{userData?.PrimerApellido}}</strong>, el correo se ha validado de manera exitosa. Ya puedes  Continuar con el proceso</strong>
+    </p>
+
+    <div class="has-margin-top-30">
+      <button class="btn btn-success" (click)="sendOTP()"> Continuar con el proceso</button>
+    </div>
+  </div>
+</div>

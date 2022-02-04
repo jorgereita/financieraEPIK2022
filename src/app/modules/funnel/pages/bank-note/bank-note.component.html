@@ -1,0 +1,35 @@
+<div class="bank-note">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Firma de pagaré"
+  ></app-topbar>
+
+  <div class="is-relative has-padding-20">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div [style.height]="'auto'" class="justify-center align-center flex-column">
+
+      <div class="text-center mt-5">
+        <div class="text-center p-5 has-margin-50" *ngIf="!hasBankNote">
+          <i class="fas fa-spinner fa-spin text-green-100 fa-3x"></i>
+        </div>
+
+        <h5 class="my-5" *ngIf="!hasBankNote">Hemos enviado un link al número de contacto de tu cliente para realizar la firma del pagaré</h5>
+        <h5 class="my-5" *ngIf="hasBankNote">¡Genial! el pagaré ha sido firmado correctamente</h5>
+
+        <p class="my-5" *ngIf="!hasBankNote">
+          Una vez el usuario realice la firma del pagaré, te redireccionaremos para  Continuar con el proceso
+        </p>
+
+        <p class="my-5" *ngIf="hasBankNote">
+          Pulsa finalizar para terminar el proceso de crédito
+        </p>
+      </div>
+
+      <div class="text-center" *ngIf="hasBankNote">
+        <button class="btn btn-success has-margin-auto" (click)="sendData()">finalizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,27 @@
+
+
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container">
+      <div class="wrapper">
+        <h1 class="heading-1">
+            Validación en proceso
+        </h1>
+      </div>
+  
+  
+      <div class="contenido">
+        <img src="../assets/images/funnel/dni.png" alt="" class=" ">
+        <p class="big-p mb-medium">
+            La identidad del cliente está siendo confirmada
+        </p>
+       
+      </div>
+      <div class="actions">
+        <button class="btn-orange"  (click)="sendVerificar()">Verificar</button>
+        <br><br>
+        <button class="btn-outline"  routerLink="/funnel/initial-query">Cancelar</button>
+      </div>
+    </div>
+  </div>

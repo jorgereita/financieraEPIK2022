@@ -1,0 +1,32 @@
+<div class="choose-amount-success bg-dark text-white text-center min-height-100 has-padding-20 is-relative flex-column justify-center align-items-center">
+  <h4 class="text-green-100 text-center" *ngIf="!hasWappDone">Esperando aceptación de condiciones...</h4>
+  <h4 class="text-green-100 text-center" *ngIf="hasWappDone">¡Monto y plazo seleccionados correctamente!</h4>
+
+  <div class="text-center" *ngIf="!hasWappDone">
+    <strong class="text-white">
+      Hemos enviado el plan de pagos con el valor de las cuotas y el plazo al whastapp del cliente.
+    </strong>
+  </div>
+
+  <div class="text-center p-5 has-margin-50" *ngIf="!hasWappDone">
+    <i class="fas fa-spinner fa-spin text-green-100 fa-3x"></i>
+  </div>
+
+  <img src="assets/images/funnel/whatsapp.png" alt="biometrico" class="has-margin-40" width="120" *ngIf="hasWappDone" />
+
+  <div class="text-center" *ngIf="!hasWappDone">
+    <strong class="text-white">
+      Estamos esperando la aceptación de condiciones por parte del usuario vía Whatsapp. Te redireccionaremos una vez que el cliente haya escogido el plazo y realizado la aceptación de condiciones.
+    </strong>
+  </div>
+
+  <div class="text-center" *ngIf="hasWappDone">
+    <strong class="text-white">
+      El usuario ha aceptado las condiciones del crédito enviadas a Whatsapp. Para  Continuar presiona el botón <strong class="text-green-100">Enviar pagaré</strong>
+    </strong>
+  </div>
+
+  <div class="has-margin-top-30 text-center" *ngIf="hasWappDone">
+    <button class="btn btn-success mx-auto my-2" (click)="sendBankNote()">Enviar documentación a Whatsapp</button>
+  </div>
+</div>

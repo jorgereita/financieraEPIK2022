@@ -1,0 +1,72 @@
+.face-detector-match {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 67px);
+
+  @media screen and(max-width: 480px) {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  @media screen and(max-width: 960px) {
+    // max-width: 640px;
+    width: 100%;
+  }
+}
+.backImg{
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  top: 7rem;
+  height: 88vh;
+}
+::ng-deep .placeholder {
+  object-fit: cover!important;
+}
+.button-camera{
+  position: absolute;
+  z-index: 101;
+}
+.title-cam{
+  z-index: 108;
+  font-size: 1.5em;
+  color: white;
+  position: absolute;
+  padding: 0.5rem;
+  margin-right: 4rem;
+  top: 10rem;
+}
+.sub-title-cam{
+  z-index: 108;
+  color: white;
+  font-size: 1.4em;
+  position: absolute;
+  padding-top: 8.4rem;
+  margin-left: 1rem;
+}
+::ng-deep video {
+  width: 100%!important;
+  height: 80vh;
+}
+
+.take-picture {
+  height: 80vh;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+::ng-deep .face-counter {
+  bottom: 10vh!important;
+  background: none!important;
+}
+
+::ng-deep .face-hint {
+  background: none!important;
+  font-size: 2rem!important;
+  font-family: 'Roboto', sans-serif!important;
+  color: white!important;
+  width: 90%!important;
+  top: 30px!important;
+}

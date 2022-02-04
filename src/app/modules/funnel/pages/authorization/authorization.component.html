@@ -1,0 +1,52 @@
+<div class="authorization">
+  <app-topbar
+    title="Autorización de consulta"
+  ></app-topbar>
+
+  <div class="has-padding-20 text-center is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div class="simulation__simulate flex-column">
+      <strong>Al  Continuar, usted autoriza la consulta de su información crediticia ante las siguientes entidades</strong>
+    </div>
+
+    <div class="has-margin-bottom-50">
+      <form [formGroup]="authorizationForm" (submit)="sendData()">
+        <div class="has-margin-top-10">
+          <div class="authorization__legal has-margin-10">
+            Autorizo de manera expresa e irrevocable a EL BANCO o a quien ostente en el futuro la calidad de acreedor, para consultar,
+            solicitar, suministrar, reportar, procesar y divulgar toda la información pasada, presente y futura que se refiere a mi comportamiento
+            crediticio financiero, comercial, de servicios y la proveniente de terceros países a los operadores de Información financiera. Conozco que el
+            alcance de esta autorización implica que el comportamiento frente a mis obligaciones será registrado con el objeto de suministrar información
+            suficiente y adecuada al mercado sobre el estado de mis obligaciones financieras, comerciales, crediticias y de servicios y la proveniente de
+            terceros países de la misma naturaleza. La información podrá ser igualmente utilizada para efectos estadísticos.
+          </div>
+        </div>
+
+        <div class="text-left">
+          <div>
+            <mat-checkbox
+              class="amateur"
+              color="primary"
+              formControlName="AceptaCentralesEpik">Autorizo la consulta en la central de datos de Epik</mat-checkbox>
+          </div>
+
+          <div>
+            <mat-checkbox
+              class="amateur"
+              color="primary"
+              formControlName="AceptaCentralesBanco">
+              <span>Autorizo al <strong>Banco Popular</strong> a realizar la consulta de mis datos en las centrales de riesgo</span>
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="has-margin-top-10">
+          <button class="btn btn-success my-2" type="submit" [disabled]="!authorizationForm.valid"> Continuar</button>
+          <br />
+          <button class="btn btn-outline-success my-2" routerLink="/agent-home">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

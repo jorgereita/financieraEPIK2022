@@ -1,0 +1,46 @@
+
+<div class="container-cmp add-accounts ">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container">
+      <div class="wrapper mb-small-odd">
+        <h1 class="heading-1 mb-small-odd">
+          Seleccionar la Cuenta
+          para Realizar el Desembolso
+        </h1>
+  
+        <p class="advise-p default-text-size">
+          Selecciona la cuenta que el cliente escoja
+          para realizar el desembolso.
+        </p>
+      </div>
+    
+      <div class="wrapper mb-medium" *ngIf="objDatosCuentas">
+        <div class="has-margin-top-30" *ngFor="let item of objDatosCuentas">
+          <div class="card card-option has-margin-top-10 has-margin-bottom-10 has-padding-10 flex-row align-items-center"
+            [ngClass]="selected == item.IdDatoCuenta ? 'selected' : null" (click)="selected = item.IdDatoCuenta">
+            <mat-icon>person_outline</mat-icon>
+            <div class="flex-column has-margin-left-20">
+              <strong>{{item.Entidad}} - **** {{getNumber(item.NumeroCuenta)}} </strong>
+              <div>{{item.TipoCuenta}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="actions mb-small">
+        <button class="btn-orange" (click)="sendData()" [disabled]="!selected"> Continuar</button>
+        <br /> 
+        <br /> 
+        <button class="btn-orange" (click)="openPopUp()" > Ingresar cuenta</button>
+        <br /> 
+        <br /> 
+        <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+      </div>
+      <!-- <hr class="orange-separator mb-small-odd"> -->
+  
+ 
+  
+    </div>
+  </div>

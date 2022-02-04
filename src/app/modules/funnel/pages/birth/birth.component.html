@@ -1,0 +1,29 @@
+ 
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1">
+        Firma del Pagaré
+      </h1>
+    </div>
+
+
+    <div class="contenido">
+      <mat-icon style="color:#50d550 ;font-size: 53px;">whatsapp</mat-icon>
+      <p class="big-p mb-medium">
+         Hemos enviado un enlace para la firma del pagaré al <b class="inner-text"> WhatsApp</b>    <mat-icon style="color:#50d550 ;font-size: 23px;">whatsapp</mat-icon>  del cliente, por favor verifica que fue confirmado.
+      </p>
+     
+    </div>
+    <div class="actions">
+      <button class="btn-orange"  (click)="sendVerificar()">Verificar</button>
+      <br><br>
+      <button class="btn-outline"  routerLink="/funnel/initial-query">Terminar proceso</button>
+      <br>
+      <app-btn-chat></app-btn-chat>
+    </div>
+  </div>
+</div>

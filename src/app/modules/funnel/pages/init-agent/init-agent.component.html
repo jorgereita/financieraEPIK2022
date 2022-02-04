@@ -1,0 +1,25 @@
+<div class="loan-presentation">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Créditos"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div [style.height]="'auto'" class="has-padding-10 justify-center align-center flex-column">
+
+      <div class="text-center">
+        <h3>Hola, BoConcept</h3>
+
+        <h5 class="my-5">¿Que quieres hacer hoy?</h5>
+
+        <div class="my-5 flex-column align-center justify-center">
+          <button class="btn btn-success my-2 is-half-width mx-auto btn-block" routerLink="/funnel/initial-query">Consultar cliente</button>
+          <button class="btn btn-success my-2 is-half-width mx-auto btn-block" disabled>Otras opciones</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

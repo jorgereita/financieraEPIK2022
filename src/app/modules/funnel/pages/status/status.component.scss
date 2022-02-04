@@ -1,0 +1,26 @@
+ 
+ul {
+    background: transparent;
+    text-align: initial;
+    padding-left: 4rem;
+    list-style: disc;
+    margin: 2rem;
+}
+.default-p{
+    display: grid;
+    grid-template-columns:auto auto;
+    grid-gap: 0.5rem;
+    :nth-child(2n) {
+        text-align: end;
+    }
+}
+.wrapper{
+    display: grid !important;
+    place-items: center !important;
+}
+.bullet-list{
+    width: 100%;
+}
+.bullet-list__item{
+    width: 100%;
+}

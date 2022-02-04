@@ -1,0 +1,30 @@
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Cliente sin línea de crédito 
+      </h1>
+      <br>
+      <!-- <img   src="../assets/images/funnel/reject.png" alt="reject"> -->
+      <mat-icon style="font-size: 56px;height: 56px;  width: 56px;">sentiment_dissatisfied</mat-icon>
+    </div>
+
+    <div class="wrapper">
+      <p class="big-p">
+      <b>Lo sentimos, el cliente no tiene una línea de crédito.</b>
+      </p>
+    </div>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" routerLink="/funnel/initial-query"
+        [queryParams]="{side: 'placeholder'}"> Terminar proceso</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <!-- <button class="btn-outline" routerLink="/funnel/initial-query"
+        [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button> -->
+    </div>
+  </div>
+</div>

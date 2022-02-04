@@ -1,0 +1,7 @@
+<div class="fingerprint-match">
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <lib-fingerprint-detector
+    selector=".fingerprint-match"
+    (takePhoto)="takePhoto($event)"
+  ></lib-fingerprint-detector>
+</div>

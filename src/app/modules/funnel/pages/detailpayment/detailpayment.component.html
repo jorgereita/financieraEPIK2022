@@ -1,0 +1,27 @@
+<div class="container-modal">
+    <div class="close">
+        <mat-icon class="font-icon-close" (click)="closePopUp()">close</mat-icon>
+    </div>
+    <div class="is-flex">
+        <div>
+            <mat-icon class="font-icon">info</mat-icon>
+        </div>
+        <label> La couta mensual incluye:</label>
+    </div>
+    <div class="is-grid"  >
+        <div>Capital</div>
+        <div class="response">{{data?.Capital}}</div>
+        <div>Interés</div>
+        <div class="response">{{data?.Interes}} </div>
+        <div>Seguro de vida</div>
+        <div class="response">{{data?.SeguroVida}}</div>
+        <div>Aval FGA + IVA </div>
+        <div class="response">{{data?.Garantia}}  </div>
+    </div>
+    <!-- <div class="is-full" *ngIf="data">
+        <div >{{data}} </div>
+    </div> -->
+    <div class="footer-p">
+        El cliente podrá pagar anticipadamente cubriendo los costos incurridos hasta ese momento.
+    </div>
+</div>

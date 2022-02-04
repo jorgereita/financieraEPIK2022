@@ -1,0 +1,13 @@
+<div class="overlay-check text-center has-padding-5" *ngIf="!error">
+  <img [src]="image" alt="image" class="overlay-check__image-result" />
+  <img src="assets/images/funnel/check.png" alt="check" />
+  <h4 class="text-white">¡Listo!</h4>
+  <span *ngIf="title" class="text-white">{{title}}</span>
+</div>
+
+<div class="overlay-check overlay-check__error text-center has-padding-5" *ngIf="error">
+  <img src="assets/images/funnel/error.png" alt="check" />
+  <h4 class="text-white">¡Falló!</h4>
+  <span *ngIf="title" class="text-white"><strong class="text-white">"{{title}}"</strong> no es válido</span>
+</div>
+

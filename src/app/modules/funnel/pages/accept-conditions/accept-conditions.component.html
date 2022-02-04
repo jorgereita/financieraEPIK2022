@@ -1,0 +1,28 @@
+<div class="accept-conditions">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Condiciones"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div>
+      <h4 class="text-center">Aceptación de condiciones</h4>
+
+      <p>
+        Las condiciones de su credito por valor de <strong>$ 5,000,000</strong> son las siguientes:
+      </p>
+
+      <p style="text-align: justify;">
+        Se realizará el desembolso en la cuenta de ahorros de Bancolombia terminada en <strong class="text-green-100">**** 0480</strong>, y será descontado
+        un valor mensual de <strong class="text-green">$ 149,144</strong> el día <strong class="text-green">5 de cada mes</strong> desde la cuenta de ahorros de
+        Bancolombia terminada en <strong class="text-green">**** 0450</strong> durante los próximos <strong class="text-green">12 meses</strong>
+      </p>
+    </div>
+
+    <div class="text-center has-margin-top-40">
+      <button class="btn btn-success" (click)="sendData()">Acepto las condiciones</button>
+    </div>
+  </div>
+</div>

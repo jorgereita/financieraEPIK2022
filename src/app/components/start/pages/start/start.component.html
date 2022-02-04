@@ -1,0 +1,85 @@
+
+<div class="auth" *ngIf="showLogin">
+  <div class="auth__container">
+    <img class="auth-epik-logo" src="../assets/icons/epik-logo-blanco.svg" alt="Logo Epik">
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()" id="login-form" class="is-full-width">
+      <div class="auth__form">
+        <div class="auth__form__form-group">
+          <label class="label fw-700 over-wit2">Usuario:</label>
+          <mat-form-field>
+            <input matInput formControlName="Usuario">
+            <mat-error *ngIf="f.Usuario.hasError('email') && !f.email.hasError('required')">
+              El usuario no es válido
+            </mat-error>
+            <mat-error *ngIf="f.Usuario.hasError('required')">
+              El usuario es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="auth__form__form-group">
+          <label class="label fw-700 over-wit2">Contraseña:</label>
+          <mat-form-field class="over-wit">
+            <input matInput formControlName="Clave" [type]="hide ? 'text' : 'password'" class="auth-input over-wit2">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="f.Clave.hasError('minlength') && !f.Clave.hasError('required')">
+              La contraseña debe contener al menos 6 caracteres
+            </mat-error>
+            <mat-error *ngIf="f.Clave.hasError('required')">
+              La contraseña es requerida
+            </mat-error>
+            <!--<u class="forgot-password" routerLink="/sign/recover"  >* Olvidé mi contraseña</u>-->
+          </mat-form-field>
+        </div>
+        <mat-error *ngIf="error" class="has-margin-top-5 has-margin-bottom-25">
+          {{mensaje}}
+        </mat-error>
+
+        
+      </div>
+      <br><br>
+      <div class="auth__actions">
+        <div class="auth__actions__buttons">
+          <button class="btn-green" *ngIf="!submitted" [disabled]="!loginForm.valid">{{!type ? 'Ingresar' : 'Activar
+            usuario'}}</button>
+          <button class="btn-green" *ngIf="submitted" [disabled]="!loginForm.valid"><i *ngIf="submitted" class="fa fa-spinner fa-spin text-white"></i></button>
+        </div>
+      </div>
+    </form>
+    <div class="auth__footer-logos">
+      <div class="auth__footer-logos__logos">
+        <img class="logo-bo" [src]="bussinessLogo" alt="Logo BoConcept">
+        <!-- <span class="auth__footer-logos__logos-separator">/</span>
+        <img class="logo-kare" src="../assets/icons/logo-kare-blanco.svg" alt="Logo Kare"> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="auth" *ngIf="!showLogin">
+  <div class="auth__container">
+    <img class="auth-epik-logo" src="./assets/icons/epik-logo-blanco.svg" alt="Logo Epik">
+
+    <div class="auth__welcome-msg">
+      <p class="mb-tiny">Hola,</p>
+      <div class="auth__welcome-msg__logos">
+        <img class="logo-bo" [src]="bussinessLogo" alt="Logo BoConcept">
+        <!-- <span class="auth__welcome-msg__logos-separator">/</span>
+        <img class="logo-kare" src="./assets/icons/logo-kare-blanco.svg" alt="Logo Kare"> -->
+      </div>
+    </div>
+
+    <div class="auth__welcome-msg">
+      <p class="mb-tiny">V 3.0</p>
+    </div>
+
+    <div class="auth__actions">
+      <p>¿Qué deseas hacer hoy?</p>
+      <div class="auth__actions__buttons">
+        <button class="btn-green mb-tiny" (click)="ChangeToLogin()">Consultar Cliente</button>
+        <!--<button class="btn-green-outline" (click)="GoOthers()" [disabled]="true">Otras Opciones</button>-->
+      </div>
+    </div>
+  </div>
+</div>

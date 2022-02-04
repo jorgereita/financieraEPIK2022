@@ -1,0 +1,25 @@
+<div class="container-cmp-1">
+
+    <div class="main-container-1">
+        <div class="wrapper">
+            <h1 class="heading-1 mb-small">
+                Cargue la imagen desde su galería.
+            </h1>
+            <br>
+
+        </div>
+        <div class="wrapper">
+            <img *ngIf="load"  [src]="imageSrc" class="img-avatar" />
+            <!-- <app-camera *ngIf="camera" [imageCache]="webcamImage1" (pictureTaken)="handleImage1($event)" (cancelEvent)="cancelCamera()">
+            </app-camera> -->
+        </div>
+        <div class="actions">
+            <input id="fileInputC1" style="display: none;" name="imageUrl" type="file" accept="image/*" (change)="handleInputChange1($event)" />
+            <button *ngIf="!load" class="btn-orange" (click)="activarLoad()">Cargar desde archivo</button> <br><br>
+            <button *ngIf="load" class="btn-orange" (click)="enviar()">Enviar</button> <br><br>
+            <!-- <button class="btn-orange" (click)="openCamera()"> Tomar foto</button> <br><br> -->
+            <button class="btn-green" (click)="cancelarCamara()">Cancelar</button>  
+        </div>
+
+    </div>
+</div>

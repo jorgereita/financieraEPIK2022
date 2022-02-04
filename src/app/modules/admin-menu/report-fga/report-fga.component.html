@@ -1,0 +1,101 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container">
+        <div class="wrapper">
+            <h1 class="heading-1 mb-small">
+                Reporte FGA
+            </h1>
+            <br>
+            <p class="big-p">
+                Realice el reporte al fga buscando por documento o número transacción
+            </p>
+            <br>
+            <input matInput placeholder="Buscar..."   class="border-input"  (keyup)="getItems($event)">
+        </div>
+        <div class="wrapper">
+            <div class="container-table" *ngIf="filterList">
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true" *ngFor="let item of filterList">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="container-title-exp">
+                                    <div>
+                                        <b>Documento: </b> {{item.Documento}}
+                                    </div>
+                                    <div>
+                                        <b>Transacción: </b> {{item.NumeroTransaccion}}
+                                    </div>
+                                </div>
+                            </mat-panel-title>
+                            <mat-panel-description>
+
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <section class="panel-container">
+                            <div class="item-panel">
+                                <span class="material-icons">
+                                    person
+                                </span>
+                                <p> {{item.NombreCliente}} </p>
+                            </div>
+                            <div class="item-panel">
+                                <span class="material-icons">
+                                    calendar_today
+                                </span>
+                                <p> {{item.FechaControl}} </p>
+                            </div>
+                            <div class="item-panel">
+                                <span class="material-icons">
+                                    attach_money
+                                </span>
+                                <p> {{item.MontoCotiza  | number:'':'es' }} </p>
+                            </div>
+                            <div class="item-panel">
+                                <span class="material-icons">
+                                    schedule
+                                </span>
+                                <p> {{item.Plazo}} meses </p>
+                            </div>
+                           
+                                <hr>
+                        
+                            <div class="item-panel" *ngIf="item.TipoCuenta">
+                                <span class="material-icons">
+                                    savings
+                                </span>
+                                <p>Cuenta {{item.TipoCuenta}}  </p>
+                            </div>
+                            <div class="item-panel" *ngIf="item.NumeroCuenta">
+                                <span class="material-icons">
+                                    tag
+                                </span>
+                                <p> {{item.NumeroCuenta}}  </p>
+                            </div>
+                            <div class="item-panel" *ngIf="item.EntidadBancaria">
+                                <span class="material-icons">
+                                    account_balance
+                                </span>
+                                <p> {{item.EntidadBancaria}}  </p>
+                            </div>
+                            <div class="item-panel" *ngIf="item.CodigoBanco">
+                                <span class="material-icons">
+                                    vpn_key
+                                </span>
+                                <p> <b>Codigo</b> {{item.CodigoBanco}}  </p>
+                            </div>
+                            <div class="buttons-panel">
+                                <button class="btn-orange"  (click)="openPopUp(item,1)">Reportar  </button>
+                                <button class="btn-outline" (click)="openPopUp(item,2)">No Reportar </button>
+                            </div>
+                           
+                        </section>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <p class="big-p" *ngIf="filterList.length==0">
+                    Sin resultados
+                </p>
+            </div>
+           
+        </div>
+    </div>

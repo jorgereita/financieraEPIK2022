@@ -1,0 +1,77 @@
+@import "../../../styles/modules/variables";
+@import '~material-bottom-nav';
+.actionBtn {
+    font-size: 4em;
+    cursor: pointer;
+  }
+  
+  .snapshot {
+    text-align: center;
+    /* .img {
+      max-width: 800px;
+      max-height: 800px;
+    } */
+  }
+  
+  ul.links {
+    padding-bottom: 20px;
+  }
+  .buttons-grid{
+    display: flex;
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    top: 80%;
+    
+  }
+  .button-camera-action{
+    width: 50%;
+  }
+  .orange{
+    background: $color-orange !important;
+  }
+  .button-camera {
+    width: 76%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position: fixed;
+    top: 80%;
+    left: 14%;
+    font-size: 2rem;
+    background: $color-orange !important;
+    // color: #000;
+  }
+  .button-camera-cancel {
+    width: 76%;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    position: absolute;
+    z-index: 100;
+    position: fixed;
+    top: 90%;
+    left: 14%;
+    font-size: 2rem;
+    background-color: gray;
+  }
+  .circle{
+
+    height: 80vh;
+    position: relative;
+    top: 49px;
+    
+    /*
+    width: 98%;
+    height: auto;
+    position: fixed;
+    top: 14%;
+    left: 0px;
+    // -webkit-transform: scaleX(-1);
+    // transform: scaleX(-1);
+    */
+  }
+.camera-switch{
+  top: 7rem !important;
+}

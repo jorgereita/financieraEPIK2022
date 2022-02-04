@@ -1,0 +1,38 @@
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Identidad Válida
+      </h1>
+      <br>
+      <img class="icon-img-wide" src="../assets/icons/valid-id.svg" alt="Validación Doocumento Identidad">
+    </div>
+   
+    <div class="wrapper">
+      <h2 class="heading-2 mb-medium">
+        La identidad del cliente ha sido confirmada
+      </h2>
+      <ul class="bullet-list">
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Foto selfie <img src="assets/images/funnel/check.png" alt="check" width="15px" /></p>
+        </li>
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Foto frontal documento <img src="assets/images/funnel/check.png" alt="check" width="15px" /></p>
+        </li>
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Foto reverso documento <img src="assets/images/funnel/check.png" alt="check" width="15px" /></p>
+        </li>
+      </ul>
+    </div>
+    <br/>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" (click)="sendDniConfirm()"> Continuar</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+</div>

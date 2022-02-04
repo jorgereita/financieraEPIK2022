@@ -1,0 +1,126 @@
+@import "../../../../../styles/modules/variables";
+@import '~material-bottom-nav';
+
+.signup {
+  background: url('/assets/images/sign/bg-signup.jpg') no-repeat;
+  background-size: auto 100%;
+  max-width: 100%;
+  min-height: calc(100vh - 70px);
+  margin: auto;
+
+  .bottom-nav {
+    @include bottom-nav(
+      $background-color: $color-dark,
+      $active-color: $color-green-100,
+      $inactive-color: #E0E0E0,
+    );
+  }
+
+  &-bg {
+    //background: rgba(255, 255, 255, 0.7);
+    width: 80%;
+    margin: auto;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+
+  .mat-form-field-suffix {
+    cursor: pointer;
+  }
+
+  .mat-form-field-label {
+    font-weight: 600!important;
+  }
+
+  .mat-form-field-wrapper {
+    margin-bottom: 10px;
+  }
+
+  .mat-form-field-flex {
+    border: 1px solid #C2C9D3;
+    border-radius: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .mat-form-field-invalid {
+    .mat-form-field-flex {
+      border-color: $color-red;
+    }
+
+    .mat-form-field-label {
+      color: $color-red;
+    }
+
+    .mat-form-field-suffix {
+      * {
+        color: $color-red;
+      }
+    }
+
+    .mat-form-field-required-marker {
+      color: $color-red;
+    }
+    .mat-input-element {
+      color: $color-red;
+    }
+  }
+
+  .mat-focused {
+    .mat-form-field-label {
+      color: $color-blue-100;
+    }
+
+    .mat-form-field-suffix {
+      * {
+        color: $color-blue-100;
+      }
+    }
+
+    .mat-form-field-required-marker {
+      color: $color-blue-100;
+    }
+    .mat-input-element {
+      color: $color-blue-100;
+    }
+    .mat-form-field-flex {
+      border-color: $color-blue-100;
+    }
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-label-wrapper {
+    //background: white;
+    overflow: unset!important;
+  }
+
+  .mat-form-field-label {
+    background: white!important;
+    margin-top: -5px;
+    padding: 0px 10px!important;
+    width: auto!important;
+  }
+
+
+  #login-form {
+    text-align: center;
+    max-width: 360px;
+    margin: auto;
+    padding: 40px;
+
+    .btn {
+      .disabled,
+      [disabled] {
+        background: #C2C9D3!important;
+        opacity: 1;
+      }
+    }
+  }
+
+  .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+    transform: translateY(-1.28125em) scale(0.85) perspective(100px) translateZ(0.00103px);
+  }
+}

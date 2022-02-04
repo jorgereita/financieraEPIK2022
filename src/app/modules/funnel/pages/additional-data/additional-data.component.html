@@ -1,0 +1,297 @@
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+
+  <div class="main-container">
+    <div class="wrapper">
+      <div class="stepper">
+
+        <div class="step" [ngClass]="datosBasicos ? 'active' : 'unactive' ">
+
+        </div>
+        <div class="step" [ngClass]="datosLab ? 'active' : 'unactive' ">
+
+        </div>
+        <div class="step" [ngClass]="datosContacto ? 'active' : 'unactive' ">
+
+        </div>
+        <label for="">{{datosBasicos?'1 de 3':datosLab?'2 de 3':datosContacto?'3 de 3':''}} </label>
+
+      </div>
+
+      <div *ngIf="datosBasicos">
+        <h1 class="heading-1 ">
+          Datos personales
+        </h1>
+        <form [formGroup]="additionalDataForm" (submit)="sendDataAdditional()" class="has-margin-top-20">
+          <div>
+            <label class="text-left label-small">Primer apellido*</label>
+            <mat-form-field style="width: 100%;">
+              <input class="border-input" matInput formControlName="PrimerApellido" type="text"
+                (keypress)="allowCharsfilter($event)" autocomplete="off">
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="text-left label-small">Fecha de nacimiento*</label>
+            <mat-form-field style="width: 100%;">
+              <input class="border-input" matInput [matDatepicker]="picker" formControlName="FechaNacimiento"
+                placeholder="" (click)="forzarFecha(picker)" />
+              <mat-icon matPrefix class="calendar">calendar_today</mat-icon>
+              <mat-datepicker #picker="matDatepicker" ngDefaultControl>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="text-left label-small">Persona expuesta políticamente * <mat-icon class="font-icon-info"
+                (click)="openPopUpDetail('Personas que desempeñan o han desempeñado funciones públicas destacadas, por ejemplo, jefes de Estado, políticos de alta jerarquía, funcionarios gubernamentales, judiciales o militares de alta jerarquía, altos ejecutivos de empresas estatales, funcionarios importantes de partidos políticos, entre otros.','Persona expuesta políticamente')">
+                info</mat-icon></label>
+
+            <br>
+            <mat-button-toggle-group formControlName="PEP" style="border:0px;">
+              <mat-button-toggle value="true">Si</mat-button-toggle>
+              <mat-button-toggle value="false">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div>
+            <label class="text-left label-small">¿ Realiza operaciones en moneda extranjera ? <mat-icon
+                class="font-icon-info"
+                (click)="openPopUpDetail('Aquellas operaciones cuyo importe se denomina o exige su liquidación en una moneda distinta de la funcional. Se incluyen operaciones como: Compra o venta de bienes o servicios cuyo precio se denomina en una moneda extranjera, adquisición o disposición de activos, transferencia, o liquidación de pasivos, siempre que estas transacciones se hayan denominado en moneda extranjera.','Operaciones en moneda extranjera')">
+                info</mat-icon></label>
+            <br>
+            <mat-button-toggle-group formControlName="MonedaExtranjera" style="border:0px;">
+              <mat-button-toggle value="true">Si</mat-button-toggle>
+              <mat-button-toggle value="false">No</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="has-margin-top-20 text-center actions">
+            <button *ngIf="!loading" class="btn-orange  " type="submit"
+              [disabled]="!additionalDataForm.valid">Continuar</button>
+            <button *ngIf="loading" class="btn-orange  " type="submit" disabled>Guardando...</button>
+            <br>
+            <br>
+            <button *ngIf="!loading" class="btn-outline" type="submit"
+              routerLink="/funnel/initial-query">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="datosLab">
+        <h1 class="heading-1 ">
+          Datos laborales
+        </h1>
+        <form [formGroup]="datosLaborales" class="has-margin-top-20">
+          <div>
+            <label class="text-left label-small">Actividad económica*</label>
+            <mat-form-field style="width: 100%;">
+              <mat-select formControlName="CodigoCIIU">
+                <mat-option *ngFor="let option of ciiuCodeList" [value]="option.Id">{{option.Descripcion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label class="text-left label-small">Antigüedad laboral*</label>
+
+            <mat-button-toggle-group formControlName="IdAntiguedadLaboral" style="border:0px;">
+              <ng-container *ngFor="let option of laborarlAntiquityList">
+                <mat-button-toggle [value]="option.Id">{{option.Descripcion}}</mat-button-toggle>
+              </ng-container>
+            </mat-button-toggle-group>
+
+          </div>
+          <div>
+            <label class="text-left label-small">Ingreso mensual</label><br>
+            <div class="topes">
+              <span>
+                $ {{sliderMin | number:'1.0-0':'es'}}
+              </span>
+              <span>
+                $ {{sliderMax | number:'1.0-0':'es'}}
+              </span>
+            </div>
+            <mat-slider #gridsize class="slider" (change)="updateSetting($event)" [min]="sliderMin" [max]="sliderMax"
+              step="100000" [ngModelOptions]="{standalone: true}" [(ngModel)]="gridsize.value"></mat-slider>
+
+            <mat-form-field class="is-full-width">
+              <label matPrefix class="prefix-label"><b>Valor: </b></label>
+              <input matInput minlenght="7" [(ngModel)]="gridsize.value" [ngModelOptions]="{standalone: true}"
+                class="border-input" mask="separator.2" thousandSeparator="." maxlength="13" autocomplete="off">
+              <label matPrefix class="subfix-label"> $ </label>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label class="text-left label-small">Ocupación*</label>
+            <mat-button-toggle-group formControlName="IdActividadEconomica" style="border:0px;">
+              <ng-container *ngFor="let option of occupationList">
+
+
+
+                <mat-button-toggle [value]="option.Id" >
+                  <span> {{option.Descripcion}}</span>
+                 
+                  <mat-icon *ngIf="option.Id==5" class="abs font-icon-info"
+                    (click)="openPopUpDetail('Personas que no cumplan con los requisitos para ser independientes formales.','Independiente informal')">
+                    info</mat-icon>
+                  <mat-icon *ngIf="option.Id==4" class="abs font-icon-info "
+                    (click)="openPopUpDetail('Personas que realicen aportes a Seguridad Social y tengan productos crediticios vigentes de más de un año de antigüedad.','Independiente formal')">
+                    info</mat-icon>
+                </mat-button-toggle>
+
+              </ng-container>
+            </mat-button-toggle-group>
+          </div>
+
+
+          <div class="has-margin-top-20 text-center actions">
+            <button *ngIf="!loading" (click)="sendDataLab(gridsize.value)" class="btn-orange" type="submit"
+              [disabled]=" !(datosLaborales.valid&&gridsize.value>0)">Continuar</button>
+            <button *ngIf="loading" class="btn-orange  " type="submit" disabled>Guardando...</button>
+            <br>
+            <br>
+            <button *ngIf="!loading" class="btn-outline" type="submit"
+              routerLink="/funnel/initial-query">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="datosContacto">
+        <h1 class="heading-1 ">
+          Datos de contacto
+        </h1>
+        <p class="mb-small">Revisa los datos del cliente y en caso de necesitar alguna corrección, la puedes hacer
+          directamente en cada
+          campo: </p>
+        <form [formGroup]="datosFormContacto" (submit)="sendData()" class="has-margin-top-20">
+          <div>
+            <label class="text-left label-small">Correo electrónico </label>
+            <mat-form-field style="width: 100%;">
+              <input class="border-input" matInput formControlName="Email" type="text" autocomplete="off">
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label class="text-left label-small">Número de <b style="color:#50d550">WhatsApp</b>
+              <mat-icon style="color:#50d550 ;font-size: 23px;">whatsapp</mat-icon>
+            </label>
+            <mat-form-field style="width: 100%;">
+              <input class="border-input" matInput formControlName="Telefono" type="number" autocomplete="off">
+            </mat-form-field>
+          </div>
+
+
+          <div class="has-margin-top-20 text-center actions">
+            <button *ngIf="!loading" class="btn-orange  " type="submit"
+              [disabled]="!datosFormContacto.valid">Continuar</button>
+            <button *ngIf="loading" class="btn-orange  " type="submit" disabled>Guardando...</button>
+            <br>
+            <br>
+            <button *ngIf="!loading" class="btn-outline" type="submit"
+              routerLink="/funnel/initial-query">Cancelar</button>
+              <br>
+              <app-btn-chat></app-btn-chat>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="wrapper">
+      <p class="big-p">
+       Completar la información con los datos entregados por el cliente 
+      </p>
+      <br>
+      <form [formGroup]="additionalDataForm" (submit)="sendData()" class="has-margin-top-20">
+        <div>
+          <label class="text-left label-small">Primer apellido*</label>
+          <mat-form-field style="width: 100%;">
+            <input class="border-input" matInput formControlName="PrimerApellido" type="text" (keypress)="allowCharsfilter($event)" autocomplete="off">
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="text-left label-small">Fecha de nacimiento*</label>
+          <mat-form-field style="width: 100%;">
+            <input class="border-input" matInput [matDatepicker]="picker" formControlName="FechaNacimiento"
+              placeholder="" (click)="forzarFecha(picker)" />
+            <mat-icon matPrefix class="calendar">calendar_today</mat-icon>
+            <mat-datepicker #picker="matDatepicker" ngDefaultControl>
+            </mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="text-left label-small">Ingreso mensual*</label>
+          <mat-form-field style="width: 100%;">
+            <input class="border-input" matInput minlenght="7" formControlName="IngresoMensual" thousandSeparator="."
+              type="tel" maxlength="13" autocomplete="off" mask="separator.2" style="font-weight: 600;">
+            <mat-icon matPrefix style="font-size: 18px; position:relative; top:4px; font-weight: 600;">attach_money
+            </mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label class="text-left label-small">Ocupación*</label>
+          <mat-form-field style="width: 100%;">
+            <mat-select formControlName="IdActividadEconomica">
+              <mat-option *ngFor="let option of occupationList" [value]="option.Id">{{option.Descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="text-left label-small">Actividad Economica*</label>
+          <mat-form-field style="width: 100%;">
+            <mat-select formControlName="CodigoCIIU">
+              <mat-option *ngFor="let option of ciiuCodeList" [value]="option.Id">{{option.Descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="text-left label-small">Antigüedad laboral*</label>
+          <mat-form-field style="width: 100%;">
+            <mat-select formControlName="IdAntiguedadLaboral">
+              <mat-option *ngFor="let option of laborarlAntiquityList" [value]="option.Id">{{option.Descripcion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label class="text-left label-small">Persona expuesta políticamente*</label>
+          <mat-form-field style="width: 100%;">
+            <mat-select formControlName="Pep">
+              <mat-option [value]="1">SÍ</mat-option>
+              <mat-option [value]="0">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label class="text-left label-small">¿Realiza operaciones en moneda extranjera?*</label>
+          <mat-form-field style="width: 100%;">
+            <mat-select formControlName="MonedaExtranjera">
+              <mat-option [value]="1">SÍ</mat-option>
+              <mat-option [value]="0">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+       
+
+        <div class="has-margin-top-20 text-center actions">
+   
+
+
+          <button *ngIf="!loading" class="btn-orange  " type="submit"
+            [disabled]="!additionalDataForm.valid">Continuar</button>
+          <button *ngIf="loading" class="btn-orange  " type="submit" disabled>Guardando...</button>
+          <br>
+          <br>
+          <button *ngIf="!loading" class="btn-outline" type="submit" routerLink="/funnel/initial-query">Cancelar</button>
+        </div>
+      </form>
+
+    </div> -->

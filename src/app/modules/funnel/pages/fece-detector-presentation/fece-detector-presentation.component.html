@@ -1,0 +1,86 @@
+<!-- <div class="auth-data">
+  <app-topbar [hideMenuAtion]="true" title="Autorizaciones"></app-topbar>
+
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <h1 class="heading-1 mb-big">Validación facial<br>del cliente</h1>
+
+    <img src="assets/images/funnel/facial-validation.png" alt="valid-id" class="message-icon mb-big">
+
+    <div class="sub-container mb-big">
+      <h2 class="heading-2 mb-big">
+        Recomendaciones:
+      </h2>
+
+      <ul class="list">
+        <li class="list__item mb-small">
+          <p class="label list__item-content">
+            <span class="list__item-content--text">Tomar la foto de frente con buena luz.</span>
+          </p>
+        </li>
+        <li class="list__item mb-small">
+          <p class="label list__item-content">
+            <span class="list__item-content--text">Retirar gafas y tapabocas en caso de tener.</span>
+          </p>
+        </li>
+        <li class="list__item mb-small">
+          <p class="label list__item-content">
+            <span class="list__item-content--text">Debe sonreir para tomar la foto.</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <button *ngIf="!loading" class="btn btn-success " type="submit" routerLink="/funnel/face-detector">TOMAR
+        FOTO</button>
+      <button *ngIf="loading" class="btn btn-success " type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+        [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button>
+    </div>
+
+  </div>
+</div> -->
+
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Validación facial<br>del cliente
+      </h1>
+      <br>
+     <img class="icon-img" src="../assets/icons/facial-validation.svg" alt="Validación facial">
+    </div>
+   
+    <div class="wrapper">
+      <h2 class="heading-2 mb-medium">
+        Recomendaciones:
+      </h2>
+      <ul class="bullet-list">
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Toma la foto de frente con buena luz.</p>
+        </li>
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Retira gafas, tapabocas o cualquier otro elemento externo.</p>
+        </li>
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Debe sonreir para tomar la foto.</p>
+        </li>
+      </ul>
+    </div>
+    <br/>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" routerLink="/funnel/face-detector"> Continuar</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+</div>

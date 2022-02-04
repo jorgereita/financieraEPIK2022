@@ -1,0 +1,83 @@
+<!-- <div class="validate-email">
+  <app-topbar [hideMenuAtion]="true" title="Estado del crédito"></app-topbar>
+
+  <div class="has-padding-20 text-center">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <h1 class="heading-1 mb-medium">Resumen del crédito </h1>
+ 
+    <p>
+      <strong>Se aprobara a: <strong class="text-green text-capitalize">{{data?.Nombres}} </strong><br> El siguiente
+        crédito: </strong>
+    </p>
+    <ul >
+      <div>
+        <b> Valor :</b> $ {{data?.Valor | number:'':'es'}}
+      </div>
+      <div>
+        <b> Cuota :</b> {{data?.Cuota | currency}}
+      </div>
+      <div>
+        <b> Plazo :</b> {{data?.Plazo}} Meses
+      </div>
+      <div>
+        <b> Telefono :</b> {{data?.Telefono}} 
+      </div>
+      <div>
+        <b> Email :</b> {{data?.Email}}
+      </div>
+
+    </ul>
+    <div class="has-margin-top-30">
+      <button class="btn btn-success" (click)="sendMatDoc()"> Continuar</button>
+      <br>
+      <br>
+      <button class="btn btn-success" routerLink="/funnel/initial-query"  >Cancelar</button>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper mb-small-odd">
+      <h1 class="heading-1 mb-small-odd">
+        Resumen del Crédito
+      </h1>
+
+      <img src="assets/images/funnel/aprove.png" alt="" class="mb-big">
+
+      <div class="bullet-list">
+        <div class="bullet-list__item">
+          <p class="default-p text-left "><b>Valor del crédito: </b>   <label>${{data?.ValorCredito | number:'':'es'}} </label></p>
+        </div>
+        <div class="bullet-list__item">
+          <p class="default-p text-left "><b>Cuota mensual: </b> <label>${{data?.ValorCuotaMensual | number:'':'es'}}</label></p>
+        </div>
+        <div class="bullet-list__item">
+          <p class="default-p text-left "><b>Plazo: </b> <label>{{data?.PlazoCredito}} Meses</label> </p>
+        </div>
+        <div class="bullet-list__item">
+          <p class="default-p text-left "><b>Fecha Primer Pago: </b> <label >{{data?.PrimerFechaPago }}</label> </p>
+        </div>
+        <div class="bullet-list__item">
+          <p class="default-p text-left "><b>Teléfono: </b><label >{{data?.Telefono}}</label>  </p>
+        </div>
+        <div class="bullet-list__item">
+          <p class="default-p text-left"><b>Email: </b> <label> {{data?.Email}}  </label> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-orange" (click)="sendMatDoc(1)"> Comprar</button>
+      <br> <br>
+      <button class="btn-orange" (click)="sendMatDoc(2)"> Modificar condiciones </button>
+      <br>
+      <br>
+      <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+
+</div>

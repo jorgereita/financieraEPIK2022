@@ -1,0 +1,41 @@
+<!-- <div class="finish-flow">
+    <app-topbar title="Datos adicionales"></app-topbar>
+    <div class="content is-relative">
+      <h1 class="heading-1 mb-big">Usuario rechazado </h1>
+      <img src="assets/images/funnel/rejected-id.png" alt="" class="message-icon-wide mb-big">
+      <p class="notification-text mb-big text-black">
+        <b>Este cliente fue rechazado por megabase</b>
+      </p>
+      <div class="text-center">
+         <button class="btn btn-success has-margin-top-20 mx-auto btn-block" routerLink="/funnel/initial-query"
+           >TERMINAR PROCESO</button>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+     <div class="main-container">
+      <div class="wrapper">
+        <h1 class="heading-1 mb-small">
+          Usuario rechazado
+        </h1>
+        <br>
+        <!-- <img class="icon-img-wide" src="../assets/icons/credit-rejected.svg" alt="reject"> -->
+        <!-- <img src="../assets/images/funnel/reject.png" alt="reject"> -->
+        <mat-icon style="font-size: 56px;height: 56px;  width: 56px;">sentiment_dissatisfied</mat-icon>
+      </div>
+      <div class="wrapper">
+        <p class="big-p">
+          <b>Este cliente fue rechazado por megabase</b>
+        </p>
+      </div>
+      <div class="actions">
+        <button  class="btn-orange" routerLink="/funnel/initial-query"
+          [queryParams]="{side: 'placeholder'}"> Terminar proceso</button>
+         <br />
+        <br />
+ 
+      </div>
+    </div>
+  </div>

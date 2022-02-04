@@ -1,0 +1,171 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container">
+        <!-- <div>
+            <span>Grid Size (px): </span><b class="gridSizeValue">{{gridsize.value}}</b>
+        </div>
+        <mat-slider #gridsize (change)="updateSetting($event)" step="5" min="10" max="100" [value]="gridsize"></mat-slider> -->
+
+        <div class="wrapper">
+            <h1 class="heading-1 mb-small-odd">
+                ¡Bienvenido!
+            </h1>
+        </div>
+        <div class="wrapper">
+
+
+            <div class="form-group">
+                <form [formGroup]="basicDataForm" >
+                    <label class="form-group__label" for="idNumber">Número de cédula (Opcional)</label>
+                    <mat-form-field class="is-full-width">
+                        <input matInput autocomplete="off" max="11" formControlName="NumeroIdentificacion"
+                            (keypress)="allowNumbersfilter($event)" min="0" inputmode="numeric" type="number"
+                            pattern="\d*" class="border-input" value="" onCopy="return false" onDrag="return false"
+                            onDrop="return false" autocomplete=off>
+                    </mat-form-field>
+
+                </form>
+
+                <br>
+                <!-- <label class="form-group__label" for="idNumber">Monto </label> -->
+                <div class="topes">
+                    <span>
+                        {{sliderMin | number:'1.0-0':'es'}}
+                    </span>
+                    <span>
+                        {{sliderMax | number:'1.0-0':'es'}}
+                    </span>
+                </div>
+
+                <mat-slider #gridsize (change)="updateSetting($event)" [min]="sliderMin" [max]="sliderMax" step="100000"
+                    [(ngModel)]="gridsize.value"></mat-slider>
+
+                <mat-form-field class="is-full-width">
+                    <label matPrefix class="prefix-label"><b>Monto</b></label>
+                    <input matInput minlenght="7" [(ngModel)]="gridsize.value" [ngModelOptions]="{standalone: true}"
+                        mask="separator.2" class="border-input" thousandSeparator="." maxlength="13" autocomplete="off">
+                        <label matPrefix class="subfix-label"> $ </label>
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="actions">
+            <button *ngIf="!loading" class="btn-orange mb-tiny-odd" type="submit"
+                [disabled]="!(gridsize.value>=sliderMin&&gridsize.value<=sliderMax)" (click)="sendData(gridsize.value)">Cotizar</button>
+            <button *ngIf="loading" class="btn-orange mb-tiny-odd" type="submit" disabled>Guardando...</button>
+        </div>
+
+
+        <div class="wrapper">
+            <div class="container-table" *ngIf="simulationList">
+                <table>
+                    <tbody>
+                        <tr class="tr-head">
+                            <td>
+                                <b>Plazo (Meses) </b>
+                            </td>
+                            <td>
+                                <b> {{bussinessName!=='BO-CONCEPT'? 'Cuota' : 'Cuota (1-12 meses) '}} </b>
+                                <mat-icon *ngIf="bussinessName!=='BO-CONCEPT'" class="font-icon-info" (click)="openPopUpDetail()">info</mat-icon>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b>Cuota (13 en adelante) </b>
+                                <!-- <mat-icon class="font-icon-info" (click)="openPopUpDetail()">info</mat-icon> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> 6 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[0].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ 0 </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b> 12 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[1].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'}}
+                                </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ 0 </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b> 18 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[2].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ {{this.simulationList[2].PlanSimulacionPagos[12].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> 24 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[3].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ {{this.simulationList[3].PlanSimulacionPagos[12].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b> 36 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[4].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ {{this.simulationList[4].PlanSimulacionPagos[12].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b> 48 </b>
+                            </td>
+                            <td>
+                                <b> $ {{this.simulationList[5].PlanSimulacionPagos[0].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                            <td *ngIf="bussinessName=='BO-CONCEPT'">
+                                <b> $ {{this.simulationList[5].PlanSimulacionPagos[12].ValorTotal | number:'1.0-0':'es'
+                                    }} </b>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <b style="font-size: 1.4rem;"[innerHTML]="fullValue?.MensajeInformacionCredito" > </b>
+
+            </div>
+            <button *ngIf="simulationList" class="btn-orange mb-tiny-odd is-full-width"
+                routerLink="/funnel/initial-query">
+                Volver </button>
+            <br>
+            <button *ngIf="simulationList" class="btn-green btn-flow mb-tiny-odd is-full-width"
+                [disabled]="basicDataForm.value.Documento=='' " (click)="sendToCreate()">Continuar</button>
+            <br>
+            <br>
+        </div>
+    </div>

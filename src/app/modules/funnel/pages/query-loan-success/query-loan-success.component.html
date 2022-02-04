@@ -1,0 +1,34 @@
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div [style.height]="'auto'" class="has-padding-10 justify-center align-center flex-column">
+
+      <div class="grid-center">
+        <!-- <h1 class="heading-1 mb-big"> tienes pre aprobado un monto de</h1> -->
+        <br/>
+        <br/>
+        <br/>
+        
+        <h1 *ngIf="clientePref == true" class="heading-1 mb-medium  titulonaranja">¡Felicitaciones!</h1>
+        <br/>
+        <p *ngIf="clientePref == true" class="big-p">Identificaste un cliente preferencial que podrá tener una <b>menor tasa de interés,</b> lo que facilitará tu proceso de venta. </p>
+        <h1 class="heading-1 mb-medium  titulonaranja">Cliente Megabase </h1>
+        <br>
+        <img src="assets/images/funnel/aprove.png" alt="" class="message-icon-wide mb-big"> 
+        <h5 class="my-5"></h5>
+        <h3 class="big-p"> <b>{{data?.Nombre}}</b> tiene preaprobado un monto de  </h3>
+        <h1 class="heading-1 mb-medium"> $ {{data?.Cupo | number:'':'es'}} </h1>
+
+        <div class="actions">
+          <button class="btn-orange mb-tiny-odd" (click)="goAddData()" >Continuar</button>
+          <button class="btn-outline btn-flow" routerLink="/funnel/initial-query">Terminar proceso</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,188 @@
+// Text helpers
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// Text color helpers
+.text-white {
+  color: $color-white;
+}
+
+.text-blue {
+  color: $color-blue;
+}
+
+.text-blue-100 {
+  color: $color-blue-100;
+}
+
+.text-red {
+  color: $color-red;
+}
+
+.text-orange {
+  color: $color-orange;
+}
+
+.text-green {
+  color: $color-green;
+}
+
+.text-green-100 {
+  color: $color-green-100;
+}
+
+.text-dark {
+  color: $color-dark!important;
+}
+
+.text-dark-40 {
+  color: $color-dark-40;
+}
+
+.text-dark-60 {
+  color: $color-dark-60;
+}
+
+.text-dark-80 {
+  color: $color-dark-80;
+}
+
+.text-gray {
+  color: $color-gray;
+}
+
+.text-gray-60 {
+  color: $color-gray-60;
+}
+
+.text-gray-100 {
+  color: $color-gray-100;
+}
+
+.text-black {
+  color: $color-black!important;
+}
+
+.text-link {
+  color: $color-link;
+}
+
+.text-black-100 {
+  color: $color-black-100;
+}
+
+
+// Background colors
+.bg-white {
+  background: $color-white;
+}
+.bg-white-20 {
+  background: $color-white-20;
+}
+
+.bg-blue {
+  background: $color-blue;
+}
+
+.bg-blue-100 {
+  background: $color-blue-100;
+}
+
+.bg-red {
+  background: $color-red;
+}
+
+.bg-green {
+  background: $color-green;
+}
+
+.bg-dark {
+  //background: $color-dark!important;
+  background: #4887c7!important;
+}
+
+.bg-dark-40 {
+  background: $color-dark-40;
+}
+
+.bg-gray {
+  background: $color-gray;
+}
+
+.bg-black {
+  background: $color-black;
+}
+
+.bg-black-100 {
+  background: $color-black-100;
+}
+
+.bg-black-300 {
+  background: $color-black-300;
+  height: 100vh;
+}
+
+.disabled,
+[disabled] {
+  background: #C2C9D3!important;
+  opacity: 1;
+  cursor: not-allowed!important;
+  border: 2px solid transparent!important;
+
+  * {
+    pointer-events: none;
+  }
+}
+
+.spacer {
+  flex: 0 1 1;
+  width: 100%;
+}
+
+.list__item-content {
+  &--text {
+    line-height: 0.8;
+  }
+}
+
+.disabled {
+  background: #808080 !important;
+  border-color: #808080;
+  font-family: 'Roboto', sans-serif!important;
+  border-radius: 0!important;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  min-height: 48px!important;
+  min-width: 160px;
+  cursor: pointer;
+  margin: 5px;
+  pointer-events: auto!important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: #C2C9D3;
+  }
+}
+
+.message-icon-wide {
+  width: 20rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,49 @@
+<!-- <div class="documents">
+  <app-topbar [hideMenuAtion]="true" title="Documentos"></app-topbar>
+  <div class="has-padding-20">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div>
+      <h1 class="heading-1 mb-medium">Formalización de documentos </h1>
+      <p class="text-center"><b>{{data?.Nombres}} </b></p>
+      <p class="text-center">
+        Se enviarán al email <b>{{data?.Email}}</b> y al celular <b>{{data?.Telefono}}</b> los documentos de formalización del crédito para su aceptación.
+      </p>
+      <br>
+    </div>
+    <div class="text-center has-margin-top-10 has-margin-bottom-30">
+      <button class="btn btn-success" (click)="sendDocs()">ENVIAR DOCUMENTOS</button>
+      <br><br>
+      <button class="btn btn-success" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+
+    <div class="wrapper mb-small-odd">
+      <h1 class="heading-1 mb-small">
+        Formalización de Documentos
+      </h1>
+      <br><br>
+      <p class="big-p">
+       <b> {{data?.Nombres}}</b>  <br>
+        Selecciona el botón
+        <br>[Enviar documentos]
+        <br>para que el cliente los reciba
+        <br>en el email <b>{{data?.Email}}</b>
+        <br>y en el celular <b>{{data?.Telefono}}</b>
+        <br>para formalizar su crédito.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="btn-orange" (click)="sendDocs()">Enviar documentos</button>
+      <br><br>
+      <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+</div>

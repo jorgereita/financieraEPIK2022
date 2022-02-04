@@ -1,0 +1,26 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+     <div class="main-container">
+      <div class="wrapper">
+        <h1 class="heading-1 mb-small">
+
+        </h1>
+        <br>
+        <img class="icon-img-wide" src="../assets/icons/sad_112458.svg" alt="reject">
+      </div>
+      <div class="wrapper">
+        <p class="big-p">
+          El cliente <b>{{nombre}}</b> solicitó su Epik Crédito el día {{fecha}} y en este momento no tiene más cupo disponible.
+          <br />
+          Sin embargo, recuérdale que <b>podrá utilizar el cupo nuevamente</b> una vez pague mínimo $1'000.000 de su crédito actual.
+        </p>
+      </div>
+      <div class="actions">
+        <button  class="btn-orange" routerLink="/funnel/initial-query"
+          [queryParams]="{side: 'placeholder'}"> Finalizar</button>
+         <br />
+        <br />
+ 
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+@import "../../../../styles/modules/variables";
+
+.overlay-check {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 240px;
+  min-height: 240px;
+  height: 100%;
+  background: $color-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $color-green-100;
+  border: 2px solid $color-green-100;
+  border-radius: 12px;
+  transform: translateX(-50%);
+  overflow: hidden;
+
+  &__error {
+    background: #fd4600;
+    border: 2px solid $color-dark;
+  }
+
+  img {
+    width: 60px;
+    margin-bottom: 10px;
+
+    &.overlay-check__image-result {
+      width: 100%;
+      margin: 0;
+      position: absolute;
+      object-fit: cover;
+      height: 100%;
+      z-index: -1;
+    }
+  }
+}

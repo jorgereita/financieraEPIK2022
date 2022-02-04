@@ -1,0 +1,60 @@
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true" title="Consulta de clientes"></app-topbar>
+
+
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div>
+    <form [formGroup]="personalInfoForm" class="main-container">
+
+      <div class="wrapper">
+        <h1 class="heading-1 mb-small-odd">
+          ¡Bienvenido!
+        </h1>
+
+        <div class="form-group">
+          <label class="form-group__label" for="idNumber">Número de cédula</label>
+          <mat-form-field class="is-full-width">
+            <input matInput autocomplete="off" max="11" formControlName="NumeroIdentificacion"
+              (keypress)="allowNumbersfilter($event)" min="0" inputmode="numeric" type="number" pattern="\d*"
+              [readOnly]="policys" class="border-input" value="" onCopy="return false" onDrag="return false"
+              onDrop="return false" autocomplete=off>
+            <mat-error *ngIf="personalInfoForm.invalid">Recuerde que solo se permiten números para este campo.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="wrapper" [formGroup]="checkInfo" *ngIf="policys">
+        <div class=" mb-medium">
+          <div class="content-policy">
+            <mat-checkbox id="auth" class="amateur" color="primary" formControlName="AceptaTratamientoDatos">
+
+            </mat-checkbox>
+            <span class="label-bold"> <a (click)="autorizacion()">Autoriza </a> a epik para el tratamiento de sus datos
+              personales de acuerdo con la <a (click)="politica()"> Política de  Tratamiento
+                de Datos Personales</a> y la consulta de sus datos en centrales de riesgo. <br />
+            </span>
+          </div>
+        </div>
+
+        <div class=" ">
+          <mat-checkbox id="auth2" class="amateur" color="primary" formControlName="AceptaConsultaCentrales">
+            <span class="label-bold">Acepta los Términos y Condiciones de epik. <br />
+            </span>
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="actions">
+        <button *ngIf="!loading&&!policys" id="continue-btn" class="btn-orange mb-tiny-odd" (click)="sendData()"
+          [disabled]="!personalInfoForm.valid">Solicitar</button>
+        <button *ngIf="policys" class="btn-orange mb-tiny-odd" (click)="continue(dataRes)"
+          [disabled]="!checkInfo.valid">Solicitar</button>
+
+        <button class="btn-green btn-flow" routerLink="/funnel/pre-cotizar">Cotizar</button>
+        <button *ngIf="loading" class="btn-orange mb-tiny-odd" disabled>Guardando...</button>
+        <br>
+        <app-btn-chat></app-btn-chat>
+
+      </div>
+    </form>
+  </div>
+</div>

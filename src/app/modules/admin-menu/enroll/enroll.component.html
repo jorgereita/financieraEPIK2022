@@ -1,0 +1,54 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container">
+        <div class="wrapper">
+            <h1 class="heading-1 mb-small">
+                Enrolar usuario
+            </h1>
+            <br>
+            <p class="big-p">
+                Puedes enrolar los asesores con su registro facial, cargando una fotografía de tu galería:
+            </p>
+        </div>
+        <div class="wrapper">
+            <div class="container-table" *ngIf="listaUsuarios">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>Asesor </b>
+                            </td>
+                            <td>
+                                <b>Perfil</b>
+                            </td>
+                            <td>
+                                <b>Tienda</b>
+                            </td>
+                            <td>
+                                <b>Enrolado</b>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let item of listaUsuarios">
+                            <td>
+                                {{item.PrimerNombre}}
+                            </td>
+                            <td>
+                                {{item.NombrePerfil}}
+                            </td>
+                            <td>
+                                {{item.NombreTienda}}
+                            </td>
+                            <td>
+                               
+                               
+                                <button class="btn-orange" *ngIf="item.Enrolado==0" (click)="openPopUp(item)">Enrolar</button>
+                                <button class="btn-green" *ngIf="item.Enrolado!==0">Enrolado</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>

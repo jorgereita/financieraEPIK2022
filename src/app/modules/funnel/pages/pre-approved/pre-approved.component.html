@@ -1,0 +1,25 @@
+<div class="pre-approved">
+  <app-topbar
+    title="Aprobación de cupo"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div class="text-center">
+      <h3>Hola, {{data?.PrimerNombre || 'Danny'}} {{data?.PrimerApellido || 'Viasus'}}</h3>
+
+      <h5 class="my-5">¡Felicidades! tienes un cupo aprobado por valor de</h5>
+
+      <h2 class="no-margin text-green-100 my-1">{{data?.MontoAprobado || availableAmount | currency:'$':'symbol':'0.0-0'}}</h2>
+
+      <h5 class="my-5">¿Deseas  Continuar?</h5>
+
+      <div class="my-5">
+        <button class="btn btn-success mx-auto my-2" (click)="continue()">Sí, quiero  Continuar</button>
+        <br />
+        <button class="btn btn-success mx-auto my-2" (click)="finishFlow()">No, no quiero</button>
+      </div>
+    </div>
+  </div>
+</div>

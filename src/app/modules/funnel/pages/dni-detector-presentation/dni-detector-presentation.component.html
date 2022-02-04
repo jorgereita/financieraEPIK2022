@@ -1,0 +1,77 @@
+<!-- <div class="auth-data">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Autorizaciones"
+  ></app-topbar>
+
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <h1 class="heading-1 text-medim mb-big">Validación de documento<br>de identidad del cliente</h1>
+
+    <img src="assets/images/funnel/user-id.png" alt="valid-id" class="message-icon-wide mb-big">
+
+    <div class="sub-container mb-big">
+      <h2 class="heading-2 mb-big">
+        Recomendaciones:
+      </h2>
+
+      <ul class="list">
+        <li class="list__item mb-small">
+          <p class="label list__item-content">
+            <span class="list__item-content--text">Ubicar el frente del documento frente a la cámara.</span>
+          </p>
+        </li>
+        <li class="list__item mb-small">
+          <p class="label list__item-content">
+            <span class="list__item-content--text">Ubica el documento en una superficie plana.</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <button *ngIf="!loading" class="btn btn-success " type="submit" routerLink="/funnel/dni-detector" [queryParams]="{side: 'placeholder'}">TOMAR FOTO</button>
+      <button *ngIf="loading" class="btn btn-success " type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline"  routerLink="/funnel/initial-query" [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button>
+    </div>
+
+  </div>
+</div> -->
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Validación de documento<br>de identidad del cliente
+      </h1>
+      <br>
+      <img class="icon-img-wide" src="../assets/icons/id-validation.svg" alt="Validación Doocumento Identidad">
+    </div>
+   
+    <div class="wrapper">
+      <h2 class="heading-2 mb-medium">
+        Recomendaciones:
+      </h2>
+      <ul class="bullet-list">
+        <li class="bullet-list__item">
+          <p class="default-p text-left mb-tiny">- Ubicar el frente del documento frente a la cámara.</p>
+        </li>
+        <li class="bullet-list__item">
+          <p class="default-p text-left">- Ubica el documento en una superficie plana.</p>
+        </li>
+
+      </ul>
+    </div>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" routerLink="/funnel/dni-detector" [queryParams]="{side: 'placeholder'}"> Continuar</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+    </div>
+  </div>
+</div>

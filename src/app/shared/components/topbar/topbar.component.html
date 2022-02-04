@@ -1,0 +1,23 @@
+
+<div class="page-header">
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <img (click)="getPanic()" class="page-header__logo-epik" src="../assets/icons/logo-epik.svg" alt="Logo Epik crédito">
+  <div >
+    <button  mat-icon-button [matMenuTriggerFor]="menu">
+      <img  class="page-header__header-separator" src="../assets/icons/dots-separator.svg" alt="Header separator">
+    </button>
+    <mat-menu #menu="matMenu" >
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </button>
+    </mat-menu>
+    
+  </div>
+ 
+  <div class="page-header__bo-kare">
+       <img class="page-header__logo-bo" [src]="bussinessLogo" alt="Logo BoConcept">
+       <span *ngIf="bussines=='BO-CONCEPT'" class="page-header__logos-separator">/</span>
+       <img  *ngIf="bussines=='BO-CONCEPT'"  src="../assets/icons/logo-kare.svg" alt="Logo kare" class="page-header__logo-kare">
+  </div>
+</div>

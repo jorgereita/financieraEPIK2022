@@ -1,0 +1,176 @@
+<div class="identity-response">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Resultado consulta"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <p>
+      Por favor valida los datos a continuación
+    </p>
+
+    <div [style.height]="'auto'">
+
+      <div *ngIf="firstPart">
+
+        <h4 class="has-margin-top-20 text-center">Datos cédula</h4>
+
+        <form [formGroup]="personalInfoForm" (submit)="sendBasicData()" class="has-margin-top-20">
+          <fieldset disabled style="background: white!important;">
+            <div>
+              <mat-form-field style="width: 100%;">
+                <mat-label>Tipo de documento*</mat-label>
+                <mat-select formControlName="IdTipoDocumento" id="TipoDocumento">
+                  <mat-option [value]="1">Cédula de ciudadanía</mat-option>
+<!--                  <mat-option *ngFor="let option of documentTypes" [value]="option.Id">{{option.Descripcion}}</mat-option>-->
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Número documento*</mat-label>
+                <input matInput autocomplete="off" maxlength="10"
+                       formControlName="NumeroIdentificacion" placeholder="615524525" type="tel" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Nombres*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="PrimerNombre" placeholder="John" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Apellidos*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="PrimerApellido" placeholder="Doe" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Fecha de nacimiento*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="FechaNacimiento" placeholder="22/10/1990" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Lugar de nacimiento*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="LugarNacimiento" placeholder="Madrid, Cundinamarca" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Estatura*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="Estatura" placeholder="1.78" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Grupo sanguíneo*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="GrupoSanguineo" placeholder="O+" type="text" value="">
+              </mat-form-field>
+            </div>
+
+            <div>
+              <mat-form-field class="is-full-width">
+                <mat-label>Sexo*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="Sexo" placeholder="M" type="text" value="" mask="S*">
+              </mat-form-field>
+            </div>
+          </fieldset>
+
+          <div class="has-padding-20 text-center">
+            <button *ngIf="!loading" class="btn btn-success has-margin-auto" type="submit" [disabled]="!personalInfoForm.valid"> Continuar</button>
+            <button *ngIf="loading" class="btn btn-success has-margin-auto" type="submit" disabled>Guardando...</button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="!firstPart">
+
+        <h4 class="has-margin-top-20 text-center">Datos de contacto</h4>
+
+        <form [formGroup]="basicDataForm" (submit)="sendData()" class="has-margin-top-30">
+
+          <div
+            formArrayName="Direcciones"
+            *ngFor="let item of basicDataForm.get('Direcciones')['controls']; let i = index;"
+          >
+            <div class="has-margin-top-20" [formGroupName]="i">
+              <mat-form-field class="is-full-width">
+                <mat-label>Dirección*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="Direccion" placeholder="e.g. Cra 57 # 5a - 09" type="text" value="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <a style="position: relative; top: -5px;" (click)="addAddress()">Añadir</a>
+
+          <div
+            formArrayName="Telefonos"
+            *ngFor="let item of basicDataForm.get('Telefonos')['controls']; let i = index;"
+          >
+            <div class="has-margin-top-20" [formGroupName]="i">
+              <mat-form-field class="is-full-width">
+                <mat-label>Teléfono*</mat-label>
+                <input matInput autocomplete="off" maxlength="10"
+                       formControlName="Telefono" placeholder="3167808694" type="tel" value="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <a style="position: relative; top: -5px;" (click)="addPhone()">Añadir</a>
+
+          <div
+            formArrayName="Correos"
+            *ngFor="let item of basicDataForm.get('Correos')['controls']; let i = index;"
+          >
+            <div class="has-margin-top-20" [formGroupName]="i">
+              <mat-form-field class="is-full-width">
+                <mat-label>Correo electrónico*</mat-label>
+                <input matInput autocomplete="off" maxlength="40"
+                       formControlName="Correo" placeholder="nombre@mail.com" type="text" value="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <a style="position: relative; top: -5px;" (click)="addEmail()">Añadir</a>
+        </form>
+      </div>
+
+<!--      <div *ngIf="!firstPart">-->
+
+<!--        <h4 class="has-margin-top-20 text-center">Datos compensar</h4>-->
+
+<!--        <form [formGroup]="compensarInfoForm" class="has-margin-top-30">-->
+
+<!--&lt;!&ndash;          <div class="has-margin-top-20 text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="btn btn-success has-margin-auto" type="submit" [disabled]="!compensarInfoForm.valid"> Continuar</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="has-margin-top-20 text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;              <a (click)="firstPart = true;">Ir atrás</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+          <div class="has-margin-top-20 text-center">
+            <button class="btn btn-success has-margin-auto" (click)="sendData()" [disabled]="!basicDataForm.valid"> Continuar</button>
+          </div>
+<!--        </form>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>

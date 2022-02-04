@@ -1,0 +1,28 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <div class="main-container">
+      <div class="wrapper">
+        <h1 class="heading-1 mb-small">
+          Cliente no aplica
+        </h1>
+        <br>
+        <!-- <img   src="../assets/images/funnel/reject.png" alt="reject"> -->
+        <mat-icon style="font-size: 56px;height: 56px;  width: 56px;">sentiment_dissatisfied</mat-icon>
+      </div>
+  
+      <div class="wrapper">
+        <p class="big-p">
+        <b>{{data?.Mensaje}} </b>
+        </p>
+      </div>
+      <div class="actions">
+        <button   class="btn-orange" routerLink="/funnel/initial-query"
+          [queryParams]="{side: 'placeholder'}"> Terminar proceso</button>
+        <!-- <button   class="btn-orange" type="submit" disabled>GUARDANDO...</button> -->
+        <br />
+        <br />
+        <!-- <button class="btn-outline" routerLink="/funnel/initial-query"
+          [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button> -->
+      </div>
+    </div>
+  </div>

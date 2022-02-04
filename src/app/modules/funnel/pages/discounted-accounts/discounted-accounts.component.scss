@@ -1,0 +1,23 @@
+@import "../../../../../styles/modules/variables";
+
+.discounted-accounts {
+  .card-option {
+    mat-icon {
+      color: $color-green-100;
+    }
+
+    strong {
+      color: $color-green-100;
+    }
+
+    &:hover,
+    &:active,
+    &.selected {
+      background: $color-dark;
+
+      div {
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="discounted-accounts">
+  <app-topbar
+    title="Recaudo"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+
+
+    <div>
+      <h4>Selecciona el día de cobro</h4>
+
+      <p>Escoge el día que mejor se acomode para realizar tu pago</p>
+
+      <Form [formGroup]="addAccountForm">
+        <div>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Seleccione el día de cobro*</mat-label>
+            <mat-select formControlName="Fecha" id="term">
+              <mat-option *ngFor="let option of terms" [value]="option.Id">{{option.Descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </Form>
+    </div>
+
+    <div>
+      <h4>Selecciona la cuenta para recaudo</h4>
+      <p>
+        Escoge una de tus cuentas para realizar el recaudo automático de la cuota para tu crédito
+      </p>
+
+      <div class="has-margin-top-30">
+        <div class="card card-option has-margin-top-10 has-margin-bottom-10 has-padding-10 flex-row align-items-center" [ngClass]="selected == 'bancolombia-0440' ? 'selected' : null" (click)="selected = 'bancolombia-0440'">
+          <mat-icon>person_outline</mat-icon>
+          <div class="flex-column has-margin-left-20">
+            <strong>MASTERCARD - **** 0440</strong>
+            <div>Tarjeta de crédito</div>
+          </div>
+        </div>
+        <div class="card card-option has-margin-top-10 has-margin-bottom-10 has-padding-10 flex-row align-items-center" [ngClass]="selected == 'davivienda-0540' ? 'selected' : null" (click)="selected = 'davivienda-0540'">
+          <mat-icon>person_outline</mat-icon>
+          <div class="flex-column has-margin-left-20">
+            <strong>Davivienda - **** 0540</strong>
+            <div>Cuenta de Ahorros</div>
+          </div>
+        </div>
+        <div class="card card-option has-margin-top-10 has-margin-bottom-10 has-padding-10 flex-row align-items-center" [ngClass]="selected == 'bancolombia-0480' ? 'selected' : null" (click)="selected = 'bancolombia-0480'">
+          <mat-icon>person_outline</mat-icon>
+          <div class="flex-column has-margin-left-20">
+            <strong>VISA - **** 0480</strong>
+            <div>Tarjeta de crédito</div>
+          </div>
+        </div>
+        <div class="card card-option has-margin-top-10 has-margin-bottom-10 has-padding-10 flex-row align-items-center" [ngClass]="selected == 'other' ? 'selected' : null" routerLink="/funnel/new-bank-account">
+          <mat-icon>dashboard_customize</mat-icon>
+          <div class="flex-column has-margin-left-20">
+            <strong>Otra</strong>
+            <div>Añade una cuenta o tarjeta de crédito</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center has-margin-top-30">
+      <button class="btn btn-success" (click)="sendData()" [disabled]="!selected"> Continuar</button>
+    </div>
+  </div>
+</div>

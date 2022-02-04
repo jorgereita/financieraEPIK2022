@@ -1,0 +1,26 @@
+<div class="video-player" *ngIf="modelsReady && !photo" [ngClass]="screenshotTaked ? 'shutter-click' : null">
+  <video
+    #fingerprintVideoElement
+    [srcObject]="stream"
+    (loadedmetadata)="loadedMetaData()"
+    (play)="playListener()"
+    [style.width]="width + 'px'"
+    [style.height]="height + 'px'"
+  ></video>
+  <canvas #canvas id="new-over-canvas"></canvas>
+  <img *ngIf="message" [src]="'assets/images/funnel/' + hand + '.png'" alt="placeholder" class="placeholder" />
+  <div class="text-center text-white face-hint">
+    Por favor ubica tu mano <strong class="text-green-100">{{hand === 'left-hand' ? 'izquierda' : 'derecha'}}</strong> en frente de la cámara.
+  </div>
+  <div class="counter counter-hint" *ngIf="!message">
+    <div class="text-center">
+      <!--      <h3 class="text-green-100">{{count}}</h3>-->
+      <strong class="text-white">Espera un momento mientras tomamos la foto, esto se hará de forma automática</strong>
+    </div>
+  </div>
+  <div class="face-message" *ngIf="message">{{message}} <strong class="text-green-100">{{hand === 'left-hand' ? 'izquierda' : 'derecha'}}</strong> de forma correcta como se indíca en la imagen.</div>
+</div>
+
+<div class="photo" *ngIf="photo">
+  <img [src]="photo" [width]="width" [height]="height" alt="photo" />
+</div>

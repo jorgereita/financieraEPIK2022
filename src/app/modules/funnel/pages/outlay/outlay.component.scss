@@ -1,0 +1,30 @@
+@import "../../../../../styles/modules/variables";
+.border-input{
+    width: 100% !important;
+}
+.text-high{
+    color: orange;
+}
+
+.add-accounts {
+    .card-option {
+      mat-icon {
+        color: $color-green-100;
+      }
+  
+      strong {
+        color: $color-green-100;
+      }
+  
+      &:hover,
+      &:active,
+      &.selected {
+        background: $color-dark;
+  
+        * {
+          color: white;
+        }
+      }
+    }
+  }
+  

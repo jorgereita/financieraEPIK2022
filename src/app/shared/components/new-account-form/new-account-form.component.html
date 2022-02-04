@@ -1,0 +1,45 @@
+<!-- <div class="new-account-form">
+  <app-topbar
+    title="Añadir cuenta"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div>
+      <h4>Añadir nueva cuenta</h4>
+
+      <p>Ingresa los datos de la nueva cuenta</p>
+
+      <Form [formGroup]="addAccountForm">
+        <div>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Selecciona el banco*</mat-label>
+            <mat-select formControlName="IdBanco" id="bank">
+              <mat-option *ngFor="let option of banks" [value]="option.Id">{{option.Descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field style="width: 100%;">
+            <mat-label>Selecciona el tipo de cuenta*</mat-label>
+            <mat-select formControlName="IdTipoCuenta" id="account">
+              <mat-option *ngFor="let option of accounts" [value]="option.Id">{{option.Descripcion}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div> 
+          <mat-form-field class="is-full-width">
+            <mat-label>Número cuenta*</mat-label>
+            <input matInput autocomplete="off" maxlength="10"
+                   formControlName="NumeroCuenta" placeholder="615524525" type="tel" value="">
+          </mat-form-field>
+        </div>
+      </Form>
+    </div>
+
+    <div class="text-center has-margin-top-30">
+      <button class="btn btn-success" (click)="sendData()" [disabled]="!addAccountForm.valid"> Continuar</button>
+    </div>
+  </div>
+</div> -->

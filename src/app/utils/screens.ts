@@ -1,0 +1,35 @@
+export const screens = {
+  0:   '/funnel/initial-query',
+  1:   '/funnel/dni-detector?side=placeholder',
+  1.1: '/funnel/no-match-doc',
+  2:   '/funnel/query-loan-success',
+  3:   '/funnel/additional-data?step=1',
+  4:   '/funnel/additional-data?step=2',
+  4.1: '/funnel/outlay-method',//escoger desembolso
+  5:   '/funnel/additional-data?step=3',
+  6:   '/funnel/finish-flow',
+  99:  '/funnel/finish-flow',
+  98:  '/funnel/reject',
+  97:  '/funnel/reject-megabase',
+  96:  '/funnel/sincreditoCompensar',
+  95:  '/funnel/sincupoparacomprar',
+  /*
+  1: '/funnel/initial-query',
+  2: '/funnel/query-loan-success',
+  3: '/funnel/auth-data',
+  4: '/funnel/face-detector-presentation',
+  4.5: '/funnel/dni-detector-presentation',
+  5: '/funnel/dni-detector?side=placeholder-inverse',
+  6: '/funnel/fingerprint-detector',
+  7: '/funnel/dni-validation-successfull',
+  8: '/funnel/form',
+  9: '/funnel/authorization',
+  99: '/funnel/finish-flow',
+  98: '/funnel/reject',
+  97: '/funnel/reject-megabase',
+  1001:'/funnel/dni-detector?side=placeholder',
+  1002:'/funnel/face-detector',
+  1003:'/funnel/additional-data',
+  1004: '/funnel/additional-data?side=placeholder'
+  */
+};

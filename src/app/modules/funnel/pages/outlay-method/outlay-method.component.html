@@ -1,0 +1,39 @@
+<div class="container-cmp add-accounts ">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>-
+    <div class="main-container">
+      <div class="wrapper mb-small-odd">
+        <h1 class="heading-1 mb-small-odd">
+          Selecciona dónde recibir el desembolso
+        </h1>
+  
+        <p class="advise-p default-text-size">
+          Selecciona la opción que el cliente escoja para recibir el desembolso
+        </p>
+      </div>
+  
+      <div class="wrapper mb-medium">
+        <button class="btn-orange"  > Caja Euro</button>
+        <br /> 
+        <br /> 
+        <button class="btn-orange"  > Cuenta Bancaria</button>
+        <br /> 
+        <br /> 
+        <button class="btn-orange" > Mixto </button>
+      </div>
+      <!-- <hr class="orange-separator mb-small-odd"> -->
+      
+      <div class="actions mb-small">
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn-outline" routerLink="/funnel/initial-query">Cancelar</button>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn-orange"> Continuar</button>
+            </div>
+        </div>
+      </div>
+ 
+  
+    </div>
+  </div>

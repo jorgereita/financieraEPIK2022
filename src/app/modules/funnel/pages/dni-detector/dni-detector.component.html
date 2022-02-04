@@ -1,0 +1,29 @@
+<div class="dni-detector-match">
+  <app-topbar [hideMenuAtion]="true" title="Detección de rostro"></app-topbar>
+  <div class="dni-app-match" [style.height]="videoDimensions?.height + 'px'">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+ 
+    <div *ngIf="!loading" class="flex">
+     
+      <div *ngIf="side === 'placeholder'">
+        <img [src]="imageBack" class="backImg" alt="">
+        <!-- <p>Recuerda que allá foto se debe tomar sin reflejos de luz</p> -->
+        <app-camera (pictureTaken)="handleImage2($event)" (cancelEvent)="cancelCamera1()"></app-camera>
+  
+      </div>
+      <div *ngIf="side === 'placeholder-inverse'">
+        <img [src]="imageBack" class="backImg" alt="">
+        <!-- <p>Recuerda que allá foto se debe tomar sin reflejos de luz</p> -->
+        <app-camera (pictureTaken)="handleImage3($event)" (cancelEvent)="cancelCamera2()"></app-camera>
+ 
+      </div>
+    </div>
+    <div class="info">
+      <p class="notification-text color-white" *ngIf="side === 'placeholder'">Por favor ubica el <u style="font-size: 2.7rem;">  frente </u>  del <br> documento dentro del recuadro</p>
+      <p class="info-msg" *ngIf="side === 'placeholder'" >Recuerda que la foto se debe tomar sin reflejos de luz</p>
+      <p class="notification-text color-white" *ngIf="side === 'placeholder-inverse'">Por favor ubica la parte <u>posterior</u> del
+        documento dentro del recuadro, Recuerde que el código de barras del documento debe ser legible</p>
+        <p class="info-msg"  *ngIf="side === 'placeholder-inverse'" ></p>
+    </div>
+  </div>
+</div>

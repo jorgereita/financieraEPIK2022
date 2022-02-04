@@ -1,0 +1,26 @@
+<div class="container-cmp-1">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div class="main-container-1">
+        <div class="wrapper">
+            <h1 class="heading-1 mb-small">
+                Confirma que desea
+            </h1>
+            <p class="big-p"> <b> {{data.mode==1?'Enviar el reporte':'No enviar el reporte'}} </b> </p>
+            <br>
+
+        </div>
+        <div class="wrapper">
+            <div *ngIf="data.mode==2">
+                <textarea matInput autocomplete="off" placeholder="Ingrese la razón" [(ngModel)]="reason" type="text"
+                class="border-input" value=""></textarea>
+            </div>
+
+        </div>
+        <div class="actions">
+            <button *ngIf="data.mode==1" class="btn-orange" (click)="sendReport()">Enviar</button>  <br>
+            <button *ngIf="data.mode==2" class="btn-orange" (click)="sendReport()"  [disabled]="reason.length<10" >Enviar</button>  <br>  <br>
+            <button class="btn-green" (click)="cancel()">Cancelar</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div style="text-align:center">
+  <div>
+    <webcam   [height]="500" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+      *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [imageQuality]="1"
+      [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+      (initError)="handleInitError($event)"></webcam>
+    <br />
+    <img *ngIf="!showWebcam" [src]="webcamImageResp!==null ? webcamImageResp.imageAsDataUrl :''" class="circle" />
+    <div *ngIf="showWebcam">
+      <button class="btn-orange button-camera" (click)="triggerSnapshot();">Capturar
+        <i class="material-icons">
+          camera
+        </i>
+      </button>
+    </div>
+    <div *ngIf="!showWebcam" class="buttons-grid">
+      
+      <button class="btn-orange button-camera-action" (click)="restart();">Tomar de nuevo
+        <!-- <i class="material-icons">
+          close
+        </i> -->
+      </button>
+      <button class="btn-orange button-camera-action orange" (click)="continue();"> Continuar
+        <!-- <i class="material-icons">
+          camera
+        </i> -->
+      </button>
+
+    </div>
+
+    <br>
+    <button class="btn-outline button-camera-cancel" (click)="emitCancel();">Cancelar </button>
+    <!-- <div class="actionBtn"  title="Tomar Foto">📸</div>
+      <div class="actionBtn" (click)="showNextWebcam(true);" title="Cambiar Camara">🔁</div> -->
+  </div>
+</div>
+
+<h4 *ngIf="errors.length > 0">Messages:</h4>
+<ul *ngFor="let error of errors">
+  <li>{{error | json}}</li>
+</ul>

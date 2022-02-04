@@ -1,0 +1,130 @@
+<div class="bio has-background-white">
+  <app-topbar
+    *ngIf="!showBiometricCam"
+    [hideMenuAtion]="true"
+    title="Validación de identidad"
+  ></app-topbar>
+
+  <div *ngIf="!showBiometricCam" class="has-padding-20">
+    <div *ngIf="!showHandSelector">
+      <h4 class="text-center has-margin-top-30">Captura de imágenes</h4>
+      <p class="text-center">
+        Selecciona y toma la foto correspondiente a cada uno de los documentos listados a continuación.
+      </p>
+    </div>
+
+    <div class="columns is-mobile wrap has-margin-top-10 has-padding-10 justify-content-around align-items-center" *ngIf="!showHandSelector">
+      <div *ngIf="!section || section === 'first'" class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative item flex-column justify-center align-items-center" (click)="sentTo('/funnel/dni-match?side=placeholder', 'route')">
+        <app-overlay-check [image]="dniPlaceholderImage" *ngIf="dniPlaceholderImage" [error]="dniPlaceholderImageError" title="Documento identidad frontal"></app-overlay-check>
+        <img src="assets/images/funnel/id.png" width="80" alt="icon" />
+        <h4 class="has-margin-5">Capturar</h4>
+        <div>
+          <strong class="text-green-100">Documento identidad frontal</strong>
+        </div>
+      </div>
+      <div *ngIf="!section || section === 'first'" class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative item flex-column justify-center align-items-center" (click)="sentTo('/funnel/dni-match?side=placeholder-inverse')">
+        <app-overlay-check [image]="dniReverseImage" *ngIf="dniReverseImage" [error]="dniReverseImageError" title="Documento identidad reverso"></app-overlay-check>
+        <img src="assets/images/funnel/id.png" width="80" alt="icon" />
+        <h4 class="has-margin-5">Capturar</h4>
+        <div>
+          <strong class="text-green-100">Documento identidad reverso</strong>
+        </div>
+      </div>
+      <div *ngIf="!section || section === 'last'" class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative item flex-column justify-center align-items-center" routerLink="/funnel/face-match">
+        <app-overlay-check [image]="selfieImage" *ngIf="selfieImage" [error]="selfieError != null" title="Selfie"></app-overlay-check>
+        <img src="assets/images/funnel/face-detection.png" width="80" alt="icon" />
+        <h4 class="has-margin-5">Capturar</h4>
+        <div>
+          <strong class="text-green-100">Selfie</strong>
+        </div>
+      </div>
+      <div *ngIf="!section || section === 'last'" class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative item flex-column justify-center align-items-center" (click)="showHandSelector = true">
+        <app-overlay-check  [image]="fingerprintImage" *ngIf="fingerprintImage" [error]="fingerprintImageError" title="Huellas"></app-overlay-check>
+        <img src="assets/images/funnel/touch.png" width="80" alt="icon" />
+        <h4 class="has-margin-5">Capturar</h4>
+        <div>
+          <strong class="text-green-100">Huellas</strong>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showHandSelector">
+      <h4 class="text-center has-margin-top-30">¿Que mano deseas usar?</h4>
+      <p class="text-center">
+        Selecciona una opción para validar tus huellas digitales
+      </p>
+      <div class="columns is-mobile wrap has-margin-top-50">
+        <div class="column is-half has-padding-10 text-center has-margin-bottom-15 has-cursor-pointer" (click)="sentTo('/funnel/fingerprint-match?hand=left-hand')">
+          <img src="assets/images/funnel/left-hand-icon.png" width="80" alt="icon" />
+          <h4 class="has-margin-5">Capturar huellas digitales</h4>
+          <div>
+            <strong class="text-green-100">Mano izquierda</strong>
+          </div>
+        </div>
+        <div class="column is-half has-padding-10 text-center has-margin-bottom-15 has-cursor-pointer" (click)="sentTo('/funnel/fingerprint-match?hand=right-hand')">
+          <img src="assets/images/funnel/right-hand-icon.png" width="80" alt="icon" />
+          <h4 class="has-margin-5">Capturar huellas digitales</h4>
+          <div>
+            <strong class="text-green-100">Mano derecha</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a (click)="showHandSelector = false">Cancelar</a>
+      </div>
+    </div>
+
+    <div *ngIf="!showHandSelector">
+      <div class="text-center">
+        <button class="btn btn-success" (click)="sendData()" [disabled]="checkImages()"> Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="biometric" *ngIf="showBiometricCam">
+    <webcam
+      [height]="innerHeight" [width]="innerWidth"
+      [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+      [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+      [videoOptions]="videoOptions"
+      [imageQuality]="1"
+      (cameraSwitched)="cameraWasSwitched($event)"
+      (initError)="handleInitError($event)"
+    ></webcam>
+    <img [src]="placeholder" alt="placeholder" class="placeholder" />
+
+    <div class="text-center text-white face-hint" *ngIf="initialPlaceholder === 'a'">
+      {{message || 'Ubica tu rostro dentro del círculo y presiona el botón'}} <strong class="text-green-100">"Capturar"</strong>
+    </div>
+
+    <div class="text-center text-white document-hint" *ngIf="initialPlaceholder === 'b'">
+      {{message || 'Ajusta tu documento con la cara frontal y presiona el botón'}} <strong class="text-green-100">"Capturar"</strong>
+    </div>
+
+    <div class="biometric__landscape--button-normal" *ngIf="initialPlaceholder === 'a'">
+      <button class="btn btn-success" (click)="triggerSnapshot('a');">Capturar</button>
+    </div>
+
+    <div class="biometric__landscape--button" *ngIf="initialPlaceholder === 'b'">
+      <button class="btn btn-success" *ngIf="!loading" (click)="triggerSnapshot('b');">Capturar</button>
+      <button class="btn btn-success" *ngIf="loading" disabled>Enviando datos...</button>
+    </div>
+  </div>
+
+  <div *ngIf="loadingActive" class="active-loading">
+    <div class="has-padding-20 text-center">
+      <h4>Analizando datos</h4>
+
+      <div class="text-center p-5 has-margin-50">
+        <i class="fas fa-spinner fa-spin text-green-100 fa-3x"></i>
+      </div>
+
+      <p>
+        <strong>Estámos validando la imagen...</strong>
+      </p>
+    </div>
+  </div>
+
+  <app-intersitial *ngIf="loader"></app-intersitial>
+</div>

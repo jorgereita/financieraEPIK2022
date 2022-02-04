@@ -1,0 +1,41 @@
+<!-- <div class="finish-flow">
+    <app-topbar title="Datos adicionales"></app-topbar>
+    <div class="content is-relative">
+      <h1 class="heading-1 mb-big">Pagaré rechazado</h1>
+      <img src="assets/images/funnel/no-credit-user.png" alt="" class="message-icon-wide mb-big">
+      <p class="notification-text mb-big text-black">
+        <b>El cliente ha rechazado el pagaré ¿ Desea volver a intentar la firma ? </b>
+      </p>
+      <div class="text-center">
+        <button class="btn btn-success has-margin-top-20 mx-auto btn-block"  (click)="sendVerificar()">REINTENTAR FIRMA</button> <br><br>
+        <button class="btn btn-success has-margin-top-20 mx-auto btn-block" routerLink="/funnel/initial-query"
+          [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">TERMINAR PROCESO</button>
+      </div>
+    </div>
+  </div> -->
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small-odd">
+        Documentos Rechazados<br>
+      </h1>
+
+      <img class="icon-img-wide" src="../assets/icons/credit-rejected.svg" alt="Documentos Rechazados">
+    </div>
+
+    <p class="big-p">
+      El cliente ha rechazado el pagaré.<br>
+      <br>
+      ¿Deseas volver a intentar <br>
+      la firma?
+    </p>
+
+    <div class="actions">
+ 
+      <button class="btn-orange"  (click)="sendVerificar()">Reintentar firma</button> <br><br>
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+        [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Terminar proceso </button>
+    </div>
+  </div>
+</div>

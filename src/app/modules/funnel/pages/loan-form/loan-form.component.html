@@ -1,0 +1,86 @@
+<!-- <div class="loan-presentation">
+  <app-topbar title="Información personal"></app-topbar>
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div [style.height]="'auto'" class="justify-center align-center flex-column">
+      <h1 class="heading-1 mb-medium">Datos adicionales</h1>
+      <p>Revise a continuación los datos del cliente, En caso de necesitar alguna corrección, la puede hacer
+        directamente en cada campo.</p>
+      <div *ngIf="firstPart">
+        <form [formGroup]="personalInfoForm" (submit)="sendData()" class="has-margin-top-20">
+          <div>
+            <label class="text-left label-small">Correo electrónico*</label>
+            <mat-form-field class="is-full-width">
+              <input matInput autocomplete="off" maxlength="40" formControlName="Email" type="text" value="">
+            </mat-form-field>
+          </div>
+          <div>
+            <label class="text-left label-small">Teléfono*</label>
+            <mat-form-field class="is-full-width">
+              <input matInput autocomplete="off" maxlength="10" formControlName="Telefono" type="tel" value="">
+            </mat-form-field>
+          </div>
+          <div class="text-center">
+            <button *ngIf="!loading" class="btn btn-success has-margin-auto" type="submit"
+              [disabled]="!personalInfoForm.valid"> Continuar</button>
+            <br><br>
+            <button class="btn btn-success has-margin-auto" routerLink="/funnel/initial-query"> Cancelar</button>
+            <button *ngIf="loading" class="btn btn-success has-margin-auto" type="submit" disabled>
+              Guardando...</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- ------------- -->
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wraper">
+      <h1 class="heading-1 mb-medium">
+        Verificar datos<br>
+        de contacto del cliente
+      </h1>
+
+      <p class="default-p">
+        Revisa a continuación los datos<br>
+        del cliente. En caso de necesitar<br>
+        alguna corrección, la puedes<br>
+        hacer directamente en cada campo.
+      </p>
+    </div>
+    <form [formGroup]="personalInfoForm" (submit)="sendData()" class="has-margin-top-20">
+
+      <div>
+        <label class="text-left label-small">Correo electrónico*</label>
+        <mat-form-field style="width: 100%;">
+          <input class="border-input" matInput formControlName="Email" type="text" autocomplete="off">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label class="text-left label-small">Teléfono*</label>
+        <mat-form-field style="width: 100%;">
+          <input class="border-input" matInput formControlName="Telefono" maxlength="10" type="tel" autocomplete="off">
+        </mat-form-field>
+      </div>
+
+      <div class="actions2">
+        <button *ngIf="!loading" class="btn-orange  " type="submit"
+        [disabled]="!personalInfoForm.valid"> Continuar</button>
+        <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+        <br />
+        <br />
+        <button class="btn-outline" routerLink="/funnel/initial-query"
+          [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button>
+      </div>
+
+    </form>
+    
+  </div>
+</div>

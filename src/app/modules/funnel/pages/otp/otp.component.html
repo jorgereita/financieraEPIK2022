@@ -1,0 +1,35 @@
+<div class="otp">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Validación telefónica"
+  ></app-topbar>
+
+  <div class="has-padding-20 text-center is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <img src="assets/images/funnel/padlock.gif" width="100%" alt="success validation">
+
+    <p>
+      Hemos enviado un mensaje a tu celular. Por favor ingresa el código de 4 dígitos que recibiste a continuación.
+    </p>
+
+    <div>
+      <ng-otp-input (onInputChange)="onInputChange($event)" [config]="settings"></ng-otp-input>
+    </div>
+
+    <h4 class="text-center has-margin-top-20">00:{{time < 10 ? '0' + time : time}}</h4>
+
+    <div class="has-margin-top-10" *ngIf="time === 0">
+      <a class="link" (click)="resendCode()">Re-enviar código</a>
+    </div>
+
+    <div class="has-margin-top-20">
+      <button *ngIf="!loading" class="btn btn-success" (click)="sendCode()" [disabled]="otpCode.length != 4">Validar código</button>
+      <button *ngIf="loading" class="btn btn-success" (click)="sendCode()" disabled>Validando código...</button>
+    </div>
+
+    <div class="has-margin-top-20 text-center">
+      <p>¿El código no llega?</p>
+      <a href="https://api.whatsapp.com/send?phone=573203290127&text=Hola,%20necesito%20ayuda,%20tengo%20problemas%20con%20mi%20cuenta" target="_blank" rel="noopener noreferrer">¡Solucionar problemas!</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true" title="Consulta de clientes"></app-topbar>
+
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div>
+        <form [formGroup]="additionalDataForm" class="main-container">
+            <div class="wrapper">
+                <h1 class="heading-1 mb-small-odd">
+                    Selección de cuenta 
+                </h1>
+                <div>
+                    <label class="text-left label-small">Tipo de cuenta*</label>
+                    <mat-form-field style="width: 100%;">
+                        <mat-select formControlName="IdTipoBanco">
+                            <mat-option *ngFor="let option of tipoBanco" [value]="option.Id">{{option.Descripcion}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <label class="text-left label-small">Banco Asociado*</label>
+                    <mat-form-field style="width: 100%;">
+                        <mat-select formControlName="IdBanco">
+                            <mat-option *ngFor="let option of listaBancos" [value]="option.Id">{{option.Descripcion}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <label class="text-left label-small">Número de cuenta*</label>
+                    <mat-form-field style="width: 110%;">
+                        <input class="border-input" matInput ng-minlength=10 ng-maxlength=11
+                            formControlName="NumeroCuenta" type="number" (keypress)="allowNumbersfilter($event)"
+                            autocomplete="off">
+                    </mat-form-field>
+                </div>
+                <div>
+                   <br>
+                    <mat-checkbox formControlName="checkDiffDeb"> <div class="break-word">Inscribir una cuenta diferente  para débito automático como medio de pago</div>    </mat-checkbox>
+                    
+                </div>
+                <br><br>
+                <label class="text-left label-small text-high">Recuerde confirmar el numero de cuenta antes de
+                    continuar.</label>
+                <div class="has-margin-top-20 text-center actions">
+                    <button *ngIf="!loading" class="btn-orange  " type="submit" (click)="sendDataPop();"
+                        [disabled]="!additionalDataForm.valid">Continuar</button>
+                    <br>
+                    <br>
+                    <button *ngIf="!loading" class="btn-outline" routerLink="/funnel/initial-query"> Terminar proceso</button>
+                    <br>
+                    <app-btn-chat></app-btn-chat>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

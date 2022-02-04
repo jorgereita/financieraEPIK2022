@@ -1,0 +1,67 @@
+<!-- <div class="dni-validation">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Autorizaciones"
+  ></app-topbar>
+
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <h1 class="heading-1 mb-big">Identidad Válida</h1>
+
+    <img src="assets/images/funnel/valid-id.png" alt="valid-id" class="message-icon-wide mb-big">
+
+    <div class="sub-container mb-big">
+      <p class="notification-text mb-big">
+        La identidad<br>del cliente ha sido<br>confirmada
+      </p>
+
+      <div class="text-center">
+        <button *ngIf="!loading" class="btn btn-success " type="submit" routerLink="/funnel/additional-data" [queryParams]="{side: 'placeholder'}"> Continuar</button>
+        <button *ngIf="loading" class="btn btn-success " type="submit" disabled>GUARDANDO...</button>
+        <br />
+        <br />
+        <button class="btn-outline"  routerLink="/funnel/initial-query" [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Resumen validación de identidad 
+      </h1>
+      <br>
+      <img class="icon-img-wide" src="../assets/icons/valid-id.svg" alt="Validación Doocumento Identidad">
+    </div>
+
+    <div class="wrapper">
+      <p class="big-p">
+
+      </p>
+      <ul class="big-p" >
+        <li>
+          Foto selfie <mat-icon >check</mat-icon>   
+        </li>
+        <li>
+          Foto frontal documento <mat-icon >check</mat-icon>  
+        </li>
+        <li>
+          Foto reverso documento <mat-icon >check</mat-icon>  
+        </li>
+      </ul>
+    </div>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" routerLink="/funnel/additional-data"> Continuar</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+       >Cancelar</button>
+    </div>
+  </div>
+</div>

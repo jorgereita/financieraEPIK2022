@@ -1,0 +1,58 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true"></app-topbar>
+    <app-intersitial *ngIf="loading"></app-intersitial>
+  
+    <div class="main-container">
+      <div class="wrapper">
+ 
+  
+        <div *ngIf="dataFromSimulation" >
+          <h1 class="heading-1 mb-small">
+            Fecha de pago
+          </h1>
+          <p>
+            Selecciona tu primera fecha de pago. 
+          </p>
+          <form [formGroup]="additionalDataForm" (submit)="sendData()" class="has-margin-top-20">
+    
+            <div>
+              <div class="flex-title">
+                <label class="text-left label-small">Primera fecha de pago </label>
+                <!-- <span *ngIf="getPayDay()"> {{getPayDay() }} </span> -->
+                <span> 10/10/2020</span>
+              </div>
+          
+              <br>
+              <mat-button-toggle-group formControlName="Plazo" style="border:0px;">
+                <ng-container  *ngFor="let option of dataFromSimulation.cotizadorData.CiclosFacturacion">
+                  <mat-button-toggle [value]="option.IdCicloFacturacion">Día {{option.IdCicloFacturacion}}</mat-button-toggle>
+                </ng-container>
+              </mat-button-toggle-group>
+            </div>
+ 
+            <div class="class-info">
+                <div class="icon-calendar"> <mat-icon>today</mat-icon></div>
+               
+                <span>Recuerda que el {{additionalDataForm.value.Plazo}} será el día de pago de cada mes </span>
+            </div>
+            <div class="has-margin-top-20 text-center actions">
+              <button *ngIf="!loading" class="btn-orange  " type="submit"
+                [disabled]="!additionalDataForm.valid">Continuar</button>
+              <button *ngIf="loading" class="btn-orange  " type="submit" disabled>Guardando...</button>
+              <br>
+              <br>
+              <button *ngIf="!loading" class="btn-outline" type="submit"
+                routerLink="/funnel/initial-query">Cancelar</button>
+                <br>
+                <app-btn-chat></app-btn-chat>
+            </div>
+          </form>
+        </div>
+  
+ 
+      </div>
+  
+  
+  
+    </div>
+  </div>

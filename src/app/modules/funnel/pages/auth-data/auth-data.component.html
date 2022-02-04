@@ -1,0 +1,116 @@
+<!-- <div class="auth-data">
+  <app-topbar
+    [hideMenuAtion]="true"
+    title="Autorizaciones"
+  ></app-topbar>
+
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <h1 class="heading-1 mb-big">Autorizaciones</h1>
+
+    <p class="text-center body-text text-black">
+      Al ingresar a la aplicación de EpikCrédito, la persona
+      identificada con la C.C. {{data.NumeroIdentificacion}}
+      autoriza el tratamiento de sus datos personales y consultas a centrales de riesgo:
+    </p>
+
+    <div [style.height]="'auto'">
+
+      <div>
+        <form [formGroup]="personalInfoForm" (submit)="sendData()" class="has-margin-top-20">
+          <div>
+            <mat-checkbox
+              id="auth"
+              class="amateur"
+              color="primary"
+              formControlName="AceptaTratamientoDatos">
+              <span class="label-bold">Autoriza a Epik para el tratamiento de sus datos personales <br />
+               </span>
+            </mat-checkbox>
+          </div>
+
+          <div class="has-margin-top-30">
+            <mat-checkbox
+              id="auth2"
+              class="amateur"
+              color="primary"
+              formControlName="AceptaConsultaCentrales">
+              <span class="label-bold">Autoriza a Epik para hacer las consultas necesarias en centrales de riesgo <br />
+               </span>
+            </mat-checkbox>
+          </div>
+
+          <div class="has-margin-top-40 text-center">
+            <button *ngIf="!loading" class="btn-orange mb-tiny-odd" type="submit" [disabled]="!personalInfoForm.valid"> Continuar</button>
+            <button *ngIf="loading" class="btn-orange mb-tiny-odd" type="submit" disabled>GUARDANDO...</button>
+            <br />
+            <br />
+            <button class="btn-outline"  routerLink="/funnel/initial-query" [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+
+
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        Autorizaciones
+      </h1>
+
+      <p class="default-p">
+        Al ingresar a la aplicación<br>
+        de EpikCrédito, la persona<br>
+        identificada con la<br>
+        C.C. <b>{{data.NumeroIdentificacion}}</b> autoriza<br>
+        el tratamiento de sus datos<br>
+        y el otorgamiento del crédito<br>
+        bajo nuestros términos y condiciones:<br>
+ 
+      </p>
+    </div>
+    <div class="wrapper" [formGroup]="personalInfoForm">
+      <div class=" mb-medium">
+        <div class="content-policy">
+          <mat-checkbox id="auth" class="amateur" color="primary" formControlName="AceptaTratamientoDatos">
+           
+          </mat-checkbox> 
+          <span class="label-bold"> <a (click)="autorizacion()">Autoriza </a>  a Epik para el
+              tratamiento de sus datos
+              personales de acuerdo con
+              la Política de <a (click)="politica()" >Tratamiento
+              de Datos Personales y la consulta de sus datos en Centrales de Riesgo.</a>  <br />
+            </span>
+        </div>
+      </div>
+
+      <div class=" ">
+        <mat-checkbox id="auth2" class="amateur" color="primary" formControlName="AceptaConsultaCentrales">
+          <span class="label-bold">Acepta el otorgamiento del
+            crédito bajo nuestros
+            términos y condiciones. <br />
+          </span>
+        </mat-checkbox>
+      </div>
+    </div>
+    <br>
+    <div class="actions">
+      <button *ngIf="!loading" class="btn-orange" (click)="sendData()" [disabled]="!personalInfoForm.valid">
+        Acepta</button>
+      <button *ngIf="loading" class="btn-orange" type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+        [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">No acepta</button>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+::ng-deep .mat-checkbox-inner-container {
+  display: inline-block;
+  height: 16px;
+  line-height: 0;
+  margin: 3px 8px 3px 3px!important;
+  order: 0;
+  position: relative;
+  vertical-align: top!important;
+  white-space: pre-wrap!important;
+  width: 16px;
+  flex-shrink: 0;
+  top: 10px!important;
+}
+
+::ng-deep .mat-checkbox-layout {
+  white-space: pre-wrap!important;
+}
+
+.content-policy{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+}
+a {
+  color: #164C4F !important;
+  text-decoration: underline !important;
+}
+.label-bold{
+  text-align: justify ;
+}
+
+::ng-deep .mat-checkbox-label{
+  text-align: justify ;
+}

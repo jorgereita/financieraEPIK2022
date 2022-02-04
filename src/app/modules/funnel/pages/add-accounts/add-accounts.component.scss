@@ -1,0 +1,65 @@
+@import "../../../../../styles/modules/variables";
+
+.add-accounts {
+  .card-option {
+    mat-icon {
+      color: $color-green-100;
+    }
+
+    strong {
+      color: $color-green-100;
+    }
+
+    &:hover,
+    &:active,
+    &.selected {
+      background: $color-dark;
+
+      * {
+        color: white;
+      }
+    }
+  }
+}
+.radios{
+  display: grid;
+  
+}
+
+::ng-deep{
+  .orange {
+    .mat-radio-label-content{
+      color: $color-orange !important;
+    }
+  }
+  .mat-radio-label-content{
+    font-size: 1.7em;
+    font-weight: 400;
+    color: $color-green;
+  
+  }
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:$color-orange; 
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:$color-orange;
+    background-color:$color-orange ;
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color: $color-orange;
+  }
+  .mat-checkbox-inner-container{
+    background: white;
+  }
+  .mat-checkbox-label{
+    font-size: 1.7em;
+    white-space: normal;
+    // font-weight: 400;
+    // color:  $color-green;
+  }
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background: $color-orange;
+  }
+}

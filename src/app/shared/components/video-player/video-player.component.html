@@ -1,0 +1,23 @@
+<div class="video-player" *ngIf="modelsReady && !photo">
+  <video
+    *ngIf="stream"
+    #videoElement
+    [srcObject]="stream"
+    (loadedmetadata)="loadedMetaData()"
+    (play)="playListener()"
+    [style.width]="width + 'px'"
+    [style.height]="height + 'px'"
+  ></video>
+  <canvas #canvas id="new-over-canvas"></canvas>
+  <img src="assets/images/funnel/selfie.png" alt="placeholder" class="placeholder" />
+  <div class="text-center text-white face-hint">
+    Ubica tu rostro dentro del círculo y sigue las instrucciones
+  </div>
+  <div class="counter">
+    {{!smileValidation ? 'Sonrie una vez a la cámara para activar la captura' : 'Deja de sonreír mientras procesamos la imagen'}}
+  </div>
+</div>
+
+<div class="photo" *ngIf="photo">
+  <img [src]="photo" [width]="width" [height]="height" alt="photo" />
+</div>

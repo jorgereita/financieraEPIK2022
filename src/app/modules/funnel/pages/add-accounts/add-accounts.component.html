@@ -1,0 +1,52 @@
+<div class="container-cmp add-accounts">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper mb-small-odd">
+      <h1 class="heading-1 mb-small-odd">
+       Selección de cuenta
+      </h1><br>
+        <label style="font-size: 1.6rem;">Elije la cuenta para recibir el desembolso y utilizar débito automático como medio de pago.</label> 
+    </div>
+
+ 
+    <div [formGroup]="formAccounts">
+      <div class="form-group">
+        <mat-radio-group aria-label="Select an option" formControlName="Cuentas" class="radios">
+          <ng-container *ngFor="let item of objDatosCuentas">
+            <mat-radio-button [value]="item.IdDatoCuenta"> {{item.Entidad}} - **** {{getNumber(item.NumeroCuenta)}}
+            </mat-radio-button>
+          </ng-container>
+          <mat-radio-button value="-99">Inscribir otra cuenta</mat-radio-button><br>
+          <mat-radio-button *ngIf="this.formAccounts.value.Cuentas == '-99'" value="-98">Cambiar Selección</mat-radio-button>
+          <br>
+          <br>
+        </mat-radio-group>
+       <ng-container *ngIf="objDatosCuentas.length">
+        <mat-checkbox formControlName="checkDiffDeb" *ngIf="formAccounts.value.Cuentas!=='-99' ">Inscribir una cuenta diferente  para débito automático como medio de pago</mat-checkbox>
+       </ng-container>
+      </div>
+      <br>
+
+      <div class="actions">
+ 
+
+      </div>
+    </div>
+
+    <div class="actions mb-small">
+      <br /><br />
+      <button class="btn-orange"  (click)="continue()" [disabled]=" (!formAccounts.valid && this.formAccounts.value.checkDiffDeb!==true)  ">
+        Continuar</button>
+      <br /><br />
+      <button   class="btn-outline" type="submit"
+      routerLink="/funnel/initial-query">Cancelar</button>
+      <br>
+      <app-btn-chat></app-btn-chat>
+       <br />
+       <br />
+     </div>
+ 
+
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.container-modal{
+    color: #164c4f;
+    .font-icon{
+        font-size: 3rem;
+        color:#FD8524;
+    }
+    .is-flex{
+        align-items: center;
+        gap: 1rem;
+    }
+    label {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .mat-icon{
+        height: 0;  
+        width: 100%;
+    }
+    .close{
+        text-align: end;
+    }
+    .is-grid{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        font-size: 1.5rem;
+        font-weight: 600;
+        place-items: flex-start;
+        gap: 0.5rem;
+        .response{
+            font-size: 1.5rem;
+            font-weight: 200;
+        }
+    }
+    .is-full{
+        font-size: 1.5rem;
+        font-weight: 600;
+        place-items: flex-start;
+    }
+    .footer-p{
+        font-size: 1.5rem;
+        color: #FD8524;
+        text-align: justify;
+        padding-top: 2rem;
+    }
+}

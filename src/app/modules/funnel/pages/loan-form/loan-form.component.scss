@@ -1,0 +1,26 @@
+*{
+    font-size: 1.5rem;
+   
+    .text-left{
+        color: #FD8524;
+        text-align: left;
+        font-weight: 600;
+ 
+    }
+    .mat-form-field-prefix{
+        top: -18px !important;
+    }
+    .actions{
+        text-align: center !important;
+    }
+}
+form{
+    text-align: left;
+}
+.mat-icon{
+    top: -18px !important;
+}
+button{
+    padding: 1rem !important;
+    text-align: center;
+}

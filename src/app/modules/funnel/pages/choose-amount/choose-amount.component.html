@@ -1,0 +1,130 @@
+<div class="choose-amount">
+  <app-topbar
+    title="Calculo del crédito"
+  ></app-topbar>
+
+  <div class="has-padding-20 is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <div class="text-center has-margin-bottom-30">
+      <h4>{{data?.PrimerNombre || 'Danny'}} {{data?.PrimerApellido || 'Viasus'}}</h4>
+      <p class="text-center m-0">Valor solicitado</p>
+      <h2 class="no-margin text-green-100 my-1">{{requestedMoney || availableAmount | currency:'$':'symbol':'0.0-0'}}</h2>
+      <p>A continuación te mostramos el plan de pagos para tu crédito.</p>
+    </div>
+
+<!--    <div class="has-margin-top-20">-->
+<!--      <form [formGroup]="amountForm">-->
+
+<!--        <div class="mt-5">-->
+<!--          <mat-form-field class="is-full-width">-->
+<!--            <mat-label>Monto a solicitar (<strong>máx. {{data?.MontoAprobado || availableAmount | currency:'$'}}</strong>)*</mat-label>-->
+<!--            <input matInput minlenght="7" formControlName="Monto" placeholder="123,123" mask="separator.2" thousandSeparator="," maxlength="13" autocomplete="off">-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+
+<!--&lt;!&ndash;        <div>&ndash;&gt;-->
+<!--&lt;!&ndash;          <mat-form-field style="width: 100%;">&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-label>Seleccione el plazo*</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-select formControlName="Plazo" id="term">&ndash;&gt;-->
+<!--&lt;!&ndash;              <mat-option *ngFor="let option of terms" [value]="option.Id">{{option.Descripcion}}</mat-option>&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--&lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--      </form>-->
+<!--    </div>-->
+
+<!--    <div class="columns is-mobile wrap has-margin-top-10">-->
+<!--      <div class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative" routerLink="/funnel/add-accounts">-->
+<!--        <app-overlay-check *ngIf="payout" title="Cuenta desembolso"></app-overlay-check>-->
+<!--        <img src="assets/images/funnel/payout.png" width="80" alt="icon" />-->
+<!--        <h4 class="has-margin-5">Inscribir cuenta</h4>-->
+<!--        <div>-->
+<!--          <strong class="text-green-100">Desembolso</strong>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="column is-half has-padding-10 text-center has-margin-bottom-10 has-cursor-pointer is-relative" routerLink="/funnel/discounted-accounts">-->
+<!--        <app-overlay-check *ngIf="income" title="Cuenta recaudo"></app-overlay-check>-->
+<!--        <img src="assets/images/funnel/payout-income.png" width="80" alt="icon" />-->
+<!--        <h4 class="has-margin-5">Inscribir cuenta</h4>-->
+<!--        <div>-->
+<!--          <strong class="text-green-100">Recaudo</strong>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="text-center">
+      <h4>Resumen del crédito</h4>
+
+<!--      <div class="card flex-row align-items-center justify-space-between has-padding-15 has-margin-bottom-20">-->
+<!--        <span class="text-left">Valor total de la deuda</span>-->
+<!--        <h6 class="text-right no-margin">{{resolveLoan() | currency:'$'}}</h6>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <div class="card flex-row align-items-center justify-space-between has-padding-15 mas-margin-bottom-20">-->
+<!--          <div class="text-left flex-column">-->
+<!--            <span>Cobertura e impuestos</span>-->
+<!--            <small>Pago obligatorio y no reembolsable</small>-->
+<!--          </div>-->
+<!--          <div class="text-right">-->
+<!--            <span>$ 477,904</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="has-margin-top-5">-->
+<!--          <mat-accordion>-->
+<!--            <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                                 (closed)="panelOpenState = false">-->
+<!--              <mat-expansion-panel-header>-->
+<!--                <mat-panel-title>-->
+<!--                  <div class="text-right">Ver detalles</div>-->
+<!--                </mat-panel-title>-->
+<!--              </mat-expansion-panel-header>-->
+
+<!--              <div>-->
+<!--                Aquí se especifican todas las coberturas y demás información relacionada con este paso-->
+<!--              </div>-->
+<!--            </mat-expansion-panel>-->
+<!--          </mat-accordion>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="has-margin-top-20">
+        <div class="card has-margin-bottom-20">
+<!--          <div class="flex-row align-items-center justify-space-between has-padding-15 ">-->
+<!--            <div class="text-left flex-column">-->
+<!--              <small>Cuota mensual aproximada</small>-->
+<!--              <small><a (click)="seePlan = !seePlan">Plan de pagos</a></small>-->
+<!--            </div>-->
+<!--            <div class="text-right">-->
+<!--              <span>$ 149,184</span>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <mat-list>
+            <div *ngFor="let item of calculateQuotes(); index as i">
+              <mat-list-item>
+                <div class="flex-row justify-space-between align-items-center is-full-width">
+                  <div class="flex text-right is-half-width">{{item?.NumeroCuotas}}</div>
+                  <div class="flex is-full-width ml-2">cuotas de</div>
+                  <div class="flex text-right is-full-width"><strong>{{item?.ValorCuota | currency:'$':'symbol':'0.0-0'}}</strong></div>
+                </div>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center has-margin-top-30">
+      <button class="btn btn-success has-margin-auto my-2" (click)="sendViaWapp()">Enviar plan de pagos por Whatsapp</button>
+      <br />
+      <br />
+      <button class="btn btn-success has-margin-auto my-2" (click)="reQuote()">Calcular con un monto diferente</button>
+      <br />
+      <br />
+      <button class="btn btn-outline-success has-margin-auto my-2" (click)="cancel()">Cancelar</button>
+    </div>
+  </div>
+</div>

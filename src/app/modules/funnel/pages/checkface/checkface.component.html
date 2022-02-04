@@ -1,0 +1,13 @@
+<div class="face-match-detector">
+    <app-topbar [hideMenuAtion]="true" title="Detección de rostro"></app-topbar>
+    <div class="face-detector-match" [style.height]="videoDimensions?.height + 'px'" style="width: 100%;">
+      <app-intersitial *ngIf="loading"></app-intersitial>
+      <div *ngIf="!loading">
+        <img [src]="imageBack" class="backImg" alt="">
+        <div class="center">
+          <p class="title-cam">Por favor ubica el rostro del cliente dentro del óvalo.</p>
+          <app-camera (pictureTaken)="handleImage1($event)" (cancelEvent)="cancelCamera()"></app-camera>
+        </div>
+      </div>
+    </div>
+  </div>

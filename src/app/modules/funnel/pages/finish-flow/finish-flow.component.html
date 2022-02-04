@@ -1,0 +1,125 @@
+<!-- <div class="finish-flow">
+  <app-topbar title="Datos adicionales"></app-topbar>
+
+  <div class="content is-relative">
+    <app-intersitial *ngIf="loading"></app-intersitial>
+
+    <h1 class="heading-1 mb-big">¡Buena Noticia!</h1>
+
+    <img src="assets/images/funnel/credit-approved.svg" alt="" class="message-icon-wide mb-big">
+
+    <p class="notification-text mb-big text-black">
+      <b>{{userData.Nombre}} <br>con {{ccType}}. {{userData.NumeroIdentificacion}} <br>tiene aprobado hasta</b>
+    </p>
+    <p class="notification-text mb-big text-black">
+      $ <b>{{cupo | number:'':'es'}}</b>
+    </p>
+
+    <div class="text-center">
+      <button *ngIf="!loading" class="btn btn-success " type="submit" (click)="sendOkCompra()"
+        [queryParams]="{side: 'placeholder'}">COMPRAR</button>
+      <button *ngIf="loading" class="btn btn-success " type="submit" disabled>GUARDANDO...</button>
+      <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+        [queryParams]="{message: 'El proceso ha sido finalizado por el usuario'}">TERMINAR PROCESO</button>
+    </div>
+  </div>
+
+
+</div> -->
+
+<div class="container-cmp">
+  <app-topbar [hideMenuAtion]="true"></app-topbar>
+  <app-intersitial *ngIf="loading"></app-intersitial>
+  <div class="main-container">
+    <div class="wrapper">
+      <h1 class="heading-1 mb-small">
+        ¡Buena Noticia!
+      </h1>
+      <br>
+      <img class="icon-img-wide" src="../assets/icons/credit-approved.svg" alt="Validación Doocumento Identidad">
+    </div>
+
+    <div class="wrapper">
+      <p class="big-p">
+        <b>{{userData?.Nombre}} <br>con {{ccType}}. {{userData?.NumeroIdentificacion}} <br>tiene aprobado hasta</b>
+      </p>
+      <p class="big-p">
+        $ <b>{{cupo | number:'':'es'}}</b>
+      </p>
+    </div>
+
+    <div *ngIf="clientePref == true">
+      <h1 class="heading-1 mb-medium titulonaranja">¡Felicitaciones!</h1>
+      <p class="big-p">Identificaste un cliente preferencial que podrá tener una <b>menor tasa de interés,</b> lo que facilitará tu proceso de venta.</p>
+      <br/>
+      <div class="wrapper">
+        <div class="container-table" *ngIf="cupo10 == true">
+          <table>
+              <tbody>
+                <tr  class="tr-head">
+                    <td>
+                        <b>Desembolso </b>
+                    </td>
+                    <td>
+                        <b>Tasa M.V.</b>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                      <b> $5M - $10M </b>
+                  </td>
+                  <td>
+                    <b> 1,7%</b>  
+                  </td>
+                </tr>
+                <tr >
+                  <td>
+                      <b> +10M </b>
+                  </td>
+                  <td>
+                    <b> 1,5%</b>  
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+        </div>
+
+        <div class="container-table" *ngIf="cupo10 == false">
+          <table>
+              <tbody>
+                <tr  class="tr-head">
+                    <td>
+                        <b>Desembolso </b>
+                    </td>
+                    <td>
+                        <b>Tasa M.V.</b>
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                      <b> $5M - $10M </b>
+                  </td>
+                  <td>
+                    <b> 1,7%</b>  
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+
+      <button   class="btn-orange  mb-tiny-odd" type="submit" (click)="sendOkCompra()">Comprar</button>
+       <br />
+      <br />
+      <button class="btn-outline" routerLink="/funnel/initial-query"
+        >Terminar proceso</button>
+    </div>
+  </div>
+</div>

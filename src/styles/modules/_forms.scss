@@ -1,0 +1,120 @@
+.mat-form-field-suffix {
+  cursor: pointer;
+  top: -10px;
+  left: -26px;
+}
+
+.mat-form-field-label {
+  font-weight: 600!important;
+}
+
+.mat-form-field-wrapper {
+  margin-bottom: 10px;
+}
+label {
+  margin: 0 !important;
+}
+.mat-form-field{
+  * {
+    border: 0 !important;
+    outline: none;
+    padding: 0 ;
+    margin: 0 ;
+    input {
+      border: none;
+      background: white;
+      outline: none;
+      // padding: 1.2rem !important;
+      padding-top: 1.2rem !important;
+      padding-bottom: 1.2rem;
+      font-size: 1.5rem;
+      text-align: center;
+      border-radius: 1rem  !important;
+      color: #104245;
+      font-family: inherit;
+    }
+    
+  }
+}
+.mat-form-field-flex {
+  background: transparent;
+  box-shadow: 0;
+  // min-height: 0;
+  border: none;
+  border-radius: none;
+  padding-left: 0px;
+  padding-right: 0px;
+  .mat-focused{
+    border: 0;
+    outline: 0;
+  }
+
+}
+
+.mat-form-field-invalid {
+  .mat-form-field-flex {
+    border-color: $color-red;
+  }
+
+  .mat-form-field-label {
+    color: $color-red;
+  }
+
+  .mat-form-field-suffix {
+    * {
+      color: $color-red;
+    }
+  }
+
+  .mat-form-field-required-marker {
+    color: $color-red;
+  }
+  .mat-input-element {
+    color: $color-red;
+  }
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0,0,0,.12);
+  border:0
+}
+.mat-focused {
+  border: 0;
+  .mat-form-field-label {
+    color: $color-blue-100;
+    font-size: 2.6rem;
+  }
+
+  // .mat-form-field-suffix {
+  //   * {
+  //     color: $color-blue-100;
+  //   }
+  // }
+
+  // .mat-form-field-required-marker {
+  //   color: $color-blue-100;
+  // }
+  // .mat-input-element {
+  //   color: $color-blue-100;
+  // }
+  .mat-form-field-flex {
+    border: none!important;
+    outline-offset: -3px;
+    // outline: rgb(229, 151, 0) auto 3px;
+  }
+}
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.mat-form-field-label-wrapper {
+  //background: white;
+  overflow: unset!important;
+}
+
+.mat-form-field-label {
+  background: white!important;
+  margin-top: -5px;
+  padding: 0px 10px!important;
+  width: auto!important;
+}

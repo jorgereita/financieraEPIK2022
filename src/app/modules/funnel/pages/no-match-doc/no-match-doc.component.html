@@ -1,0 +1,37 @@
+<div class="container-cmp">
+    <app-topbar [hideMenuAtion]="true" title="Consulta de clientes"></app-topbar>
+  
+  
+    <app-intersitial *ngIf="loading"></app-intersitial>
+    <div>
+      <form [formGroup]="personalInfoForm" class="main-container">
+          <div>
+
+          </div>
+        <div class="cont-img">
+            <img src="assets/images/funnel/warning.png" alt="" class="mb-big">
+            <div>
+                El número de cédula ingresado no coincide con la cédula, por favor vuelve a ingresar el número de cédula del cliente.
+            </div>
+        </div>
+        
+        <div class="wrapper">
+          <div class="form-group">
+            <label class="form-group__label" for="idNumber">N° Documento</label>
+            <mat-form-field class="is-full-width">
+              <input matInput autocomplete="off" max="11" formControlName="NumeroIdentificacion"
+                (keypress)="allowNumbersfilter($event)" min="0" inputmode="numeric" type="number" pattern="\d*"
+                class="border-input" value="" onCopy="return false" onDrag="return false"
+                onDrop="return false"   autocomplete=off>
+              <mat-error *ngIf="personalInfoForm.invalid">Recuerde que solo se permiten números para este campo.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="actions">
+          <button  id="continue-btn"  class="btn-orange mb-tiny-odd" (click)="sendDataDoc()" >Continuar</button>
+          <button  class="btn-outline"  routerLink="/funnel/initial-query">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
